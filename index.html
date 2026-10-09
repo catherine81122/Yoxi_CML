@@ -638,13 +638,20 @@ function go(i) {
   apis[i].play();
   tm = setTimeout(function () { go((i + 1) % scenes.length); }, DUR[i]);
 }
-addEventListener('click', function () { go(0); });
 addEventListener('keydown', function (e) {
   if (e.key === 'r' || e.key === 'R' || e.key === ' ') go(0);
   if (e.key === 'ArrowRight') go((cur + 1) % scenes.length);
   if (e.key === 'ArrowLeft') go((cur - 1 + scenes.length) % scenes.length);
   var n = parseInt(e.key, 10); if (n >= 1 && n <= scenes.length) go(n - 1);
 });
+var tx0 = 0, ty0 = 0;
+addEventListener('touchstart', function (e) { tx0 = e.changedTouches[0].clientX; ty0 = e.changedTouches[0].clientY; }, { passive: true });
+addEventListener('touchend', function (e) {
+  var dx = e.changedTouches[0].clientX - tx0, dy = e.changedTouches[0].clientY - ty0;
+  if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+    go(dx < 0 ? (cur + 1) % scenes.length : (cur - 1 + scenes.length) % scenes.length);
+  }
+}, { passive: true });
 (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () { go(0); });
 </script>
 </body>
