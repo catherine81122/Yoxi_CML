@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yoxi 今晚揪一下｜3 分鐘方案說明影片</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  html, body { height: 100%; margin: 0; background: #020b18; overflow: hidden; }
+  .host { position: fixed; inset: 0; opacity: 0; pointer-events: none; transition: opacity .9s ease; }
+  .host.on { opacity: 1; }
+</style>
+</head>
+<body>
+<script>
+var DUR = [11200, 9800, 11800, 12000, 9600, 10800, 10200, 14500, 15000, 11200, 20600];
+var scenes = [
+{name:"01 聊天痛點",css:"\n  :host {\n    --navy: #061833;\n    --navy-2: #0d2444;\n    --white: #ffffff;\n    --bubble: #f1f5f9;\n    --coral: #ff2d55;\n    --yellow: #ffc929;\n    --blue: #16315c;\n    --muted: #8a97ad;\n    box-sizing: border-box;\n    padding-top: env(safe-area-inset-top, 0px);\n    padding-bottom: env(safe-area-inset-bottom, 0px);\n  }\n  .__x { scroll-padding-top: env(safe-area-inset-top, 0px); }\n  :host { height: 100%; margin: 0; }\n  :host {\n    background: #020b18;\n    overflow: hidden;\n    font-family: \"Noto Sans TC\", \"PingFang TC\", \"Microsoft JhengHei\", sans-serif;\n  }\n  #viewport { position: fixed; inset: 0; display: grid; place-items: center; cursor: pointer; }\n  #stage {\n    position: absolute; left: 50%; top: 50%;\n    width: 1920px; height: 1080px;\n    transform-origin: center center;\n    background: var(--navy);\n    overflow: hidden;\n  }\n  .circle { position: absolute; border-radius: 50%; background: var(--navy-2); }\n  #c1 { width: 760px; height: 760px; left: 1520px; top: -320px; }\n  #c2 { width: 840px; height: 840px; left: -325px; top: 760px; }\n\n  .abs { position: absolute; white-space: nowrap; }\n  #eyebrow { left: 100px; top: 64px; font-size: 26px; color: var(--coral); font-weight: 400; letter-spacing: 0; }\n  #headWrap { position: absolute; left: 100px; top: 108px; transform-origin: 0 50%;\n    transition: transform 2.4s cubic-bezier(.4,0,.2,1); }\n  #title { font-size: 64px; font-weight: 700; color: var(--white); line-height: 80px; white-space: nowrap; }\n  #sub { position: absolute; left: 102px; top: 178px; font-size: 26px; color: var(--muted); font-weight: 400; transition: opacity 1.6s ease; }\n  #logo { position: absolute; left: 1540px; top: 70px; width: 301px; height: 87px; border-radius: 20px; background: var(--white);\n    display: grid; place-items: center; transition: opacity 1.6s ease; }\n  #logo span { font-family: \"Noto Sans TC\", Arial, sans-serif; font-weight: 700; font-style: italic; font-size: 64px; color: var(--coral); letter-spacing: -2px; }\n  #footer { left: 100px; top: 1028px; font-size: 20px; color: #5b6a82; transition: opacity 1.6s ease; }\n\n  #chat { position: absolute; inset: 0; transition: opacity 1.8s ease; }\n  #card { position: absolute; left: 555px; top: 250px; width: 810px; height: 666px; border-radius: 60px; background: var(--white); }\n  #cardTitle { position: absolute; left: 555px; width: 810px; top: 270px; text-align: center; font-size: 32px; color: #1c2a42; font-weight: 400; }\n  .msg { position: absolute; opacity: 0; transform: translateY(14px) scale(.9); transform-origin: 0 50%; }\n  .msg.right { transform-origin: 100% 50%; }\n  .msg.show { opacity: 1; transform: none;\n    transition: opacity .35s ease-out, transform .6s cubic-bezier(.34,1.56,.64,1); }\n  .bubble { position: absolute; width: 360px; height: 71px; border-radius: 36px; background: var(--bubble);\n    display: grid; place-items: center; font-size: 26px; color: #2a3446; }\n  .avatar { position: absolute; width: 41px; height: 41px; border-radius: 50%; display: grid; place-items: center; font-size: 20px; color: #fff; font-family: Arial, sans-serif; }\n  .A { background: var(--coral); } .B { background: var(--blue); } .C { background: var(--yellow); }\n  #read { position: absolute; left: 1234px; top: 854px; font-size: 21px; color: #7d8aa3; opacity: 0; transition: opacity .6s ease; }\n  #read.show { opacity: 1; }\n\n  /* final emphasis */\n  #stage.focus #chat { opacity: .22; }\n  #stage.focus #headWrap { transform: scale(1.14) translateY(8px); }\n  #stage.focus #sub, #stage.focus #logo, #stage.focus #footer { opacity: .45; }\n\n  #stage.noanim, #stage.noanim * { transition: none !important; }\n\n  @media (prefers-reduced-motion: reduce) {\n    .msg.show { transition: opacity .2s linear; transform: none; }\n    #headWrap { transition: none; }\n  }\n",html:"\n<div id=\"viewport\" title=\"點擊重播\">\n  <div id=\"stage\">\n    <div class=\"circle\" id=\"c1\"><\/div>\n    <div class=\"circle\" id=\"c2\"><\/div>\n\n    <div class=\"abs\" id=\"eyebrow\">PAIN POINT<\/div>\n    <div id=\"headWrap\"><div id=\"title\">大家都想約，為什麼最後還是沒出門？<\/div><\/div>\n    <div id=\"sub\">時間、地點、交通，讓朋友聚會卡在聊天群裡<\/div>\n    <div id=\"logo\"><span>yoxi<\/span><\/div>\n\n    <div id=\"chat\">\n      <div id=\"card\"><\/div>\n      <div id=\"cardTitle\">朋友群組（3）<\/div>\n\n      <div class=\"msg\" data-i=\"0\"><div class=\"avatar A\" style=\"left:405px;top:359px\">A<\/div><div class=\"bubble\" style=\"left:460px;top:350px\">這週要不要吃飯？<\/div><\/div>\n      <div class=\"msg right\" data-i=\"1\"><div class=\"avatar B\" style=\"left:805px;top:441px\">B<\/div><div class=\"bubble\" style=\"left:860px;top:432px\">可以啊，哪天？<\/div><\/div>\n      <div class=\"msg\" data-i=\"2\"><div class=\"avatar C\" style=\"left:405px;top:523px\">C<\/div><div class=\"bubble\" style=\"left:460px;top:514px\">我週五不行。<\/div><\/div>\n      <div class=\"msg right\" data-i=\"3\"><div class=\"avatar A\" style=\"left:805px;top:605px\">A<\/div><div class=\"bubble\" style=\"left:860px;top:596px\">那週六？<\/div><\/div>\n      <div class=\"msg\" data-i=\"4\"><div class=\"avatar B\" style=\"left:405px;top:687px\">B<\/div><div class=\"bubble\" style=\"left:460px;top:678px\">去哪裡？<\/div><\/div>\n      <div class=\"msg right\" data-i=\"5\"><div class=\"avatar C\" style=\"left:805px;top:769px\">C<\/div><div class=\"bubble\" style=\"left:860px;top:760px\">都可以。<\/div><\/div>\n\n      <div id=\"read\">已讀 3<\/div>\n    <\/div>\n\n    <div class=\"abs\" id=\"footer\">01&nbsp; Yoxi 今晚揪一下<\/div>\n  <\/div>\n<\/div>\n\n",init:function(root){
+
+  const stage = root.getElementById('stage');
+  const msgs = [...root.querySelectorAll('.msg')];
+  const read = root.getElementById('read');
+  let timers = [], running = false;
+
+  function fit() {
+    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = `translate(-50%, -50%) scale(${s})`;
+  }
+  addEventListener('resize', fit); fit();
+
+  function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
+
+  function play() {
+    timers.forEach(clearTimeout); timers = [];
+    stage.classList.add('noanim');
+    stage.classList.remove('focus');
+    msgs.forEach(m => m.classList.remove('show'));
+    read.classList.remove('show');
+    void stage.offsetWidth;
+    stage.classList.remove('noanim');
+
+    // 時間軸（秒）：0.8 起每 0.9 秒一則 → 5.3 已讀 → 停頓 → 6.8 變暗並強調標題 → 9.5 結束
+    msgs.forEach((m, i) => at(800 + i * 900, () => m.classList.add('show')));
+    at(5300, () => read.classList.add('show'));
+    at(6800, () => stage.classList.add('focus'));
+    // 結尾停留 1.4 秒後自動從頭循環
+    at(9800, () => { running = false; });
+
+    running = true;
+  }
+
+
+
+
+
+return {play:play,stop:function(){timers.forEach(clearTimeout);timers=[];if(typeof raf!=='undefined'){raf.forEach(cancelAnimationFrame);raf=[];}}};
+}},
+{name:"02/03 旅程",css:"\n  :host {\n    --navy: #061833; --navy-2: #0d2444; --white: #fff; --coral: #ff2d55; --yellow: #ffcb2b;\n    --gray: #64758b; --track: #52627b; --muted: #8a97ad;\n    box-sizing: border-box;\n    padding-top: env(safe-area-inset-top, 0px);\n    padding-bottom: env(safe-area-inset-bottom, 0px);\n  }\n  .__x { scroll-padding-top: env(safe-area-inset-top, 0px); }\n  :host { height: 100%; margin: 0; }\n  :host { background: #020b18; overflow: hidden; font-family: \"Noto Sans TC\", \"PingFang TC\", \"Microsoft JhengHei\", sans-serif; }\n  #viewport { position: fixed; inset: 0; cursor: pointer; }\n  #stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; background: var(--navy); overflow: hidden; transform-origin: center center; }\n  .circle { position: absolute; border-radius: 50%; background: var(--navy-2); }\n  #c1 { width: 760px; height: 760px; left: 1520px; top: -320px; }\n  #c2 { width: 840px; height: 840px; left: -325px; top: 760px; }\n  .abs { position: absolute; white-space: nowrap; }\n\n  /* crossfade pairs: .o = original text, .n = new text */\n  .pair { position: absolute; display: grid; white-space: nowrap; }\n  .pair > * { grid-area: 1 / 1; transition: opacity .7s ease; }\n  .pair > .n { opacity: 0; }\n  .pair.sw > .o { opacity: 0; }\n  .pair.sw > .n { opacity: 1; }\n\n  #eyebrow { left: 100px; top: 64px; font-size: 26px; color: var(--coral); justify-items: start; }\n  #title { left: 100px; top: 108px; font-size: 62px; font-weight: 500; color: var(--white); line-height: 80px; justify-items: start; }\n  #sub { left: 102px; top: 178px; font-size: 26px; color: var(--muted); justify-items: start; }\n  #footer { left: 100px; top: 1028px; font-size: 20px; color: #5b6a82; justify-items: start; }\n  #bottom { left: 0; width: 1920px; top: 728px; font-size: 42px; font-weight: 500; justify-items: center; }\n  #bottom .o { color: #8d9ab0; } #bottom .n { color: var(--white); }\n\n  #logo { position: absolute; left: 1540px; top: 70px; width: 301px; height: 87px; border-radius: 20px; background: var(--white); display: grid; place-items: center; }\n  #logo span { font-weight: 700; font-style: italic; font-size: 64px; color: var(--coral); letter-spacing: -2px; font-family: \"Noto Sans TC\", Arial, sans-serif; }\n\n  .node { position: absolute; top: 426px; width: 105px; height: 105px; border-radius: 50%; background: var(--gray);\n    transform: scale(.92); transition: background-color .5s ease, transform .5s ease; }\n  .node.red { background: var(--coral); transform: scale(1); }\n  .node.yellow { background: var(--yellow); transform: scale(1); }\n  .node.gray { background: var(--gray); transform: scale(.92); }\n  .node.start { background: var(--coral); }\n  .ring { position: absolute; inset: 0; border-radius: 50%; border: 3px solid var(--coral); opacity: 0; pointer-events: none; }\n  .node.yellow .ring { border-color: var(--yellow); }\n  .ring.go { animation: ring 1s ease-out; }\n  @keyframes ring { from { transform: scale(1); opacity: .7; } to { transform: scale(1.9); opacity: 0; } }\n\n  .arrow { position: absolute; top: 464px; width: 308px; height: 28px; }\n  .arrow svg { position: absolute; left: 0; top: 0; }\n  .arrow .base { color: var(--track); }\n  .arrow .fill { position: absolute; left: 0; top: 0; height: 28px; width: 0; overflow: hidden; color: var(--coral); transition: width .8s cubic-bezier(.45,0,.3,1), color .5s ease; }\n  .arrow .fill.on { width: 308px; }\n  .arrow .fill.yellow { color: var(--yellow); }\n\n  .label { top: 548px; width: 400px; font-size: 31px; justify-items: center; }\n  .label .o { color: #98a5ba; } .label .n { color: var(--white); } .label.last .o { color: var(--white); }\n\n  #stage.noanim, #stage.noanim * { transition: none !important; animation: none !important; }\n  @media (prefers-reduced-motion: reduce) { .ring.go { animation: none; } }\n",html:"\n<div id=\"viewport\">\n  <div id=\"stage\">\n    <div class=\"circle\" id=\"c1\"><\/div><div class=\"circle\" id=\"c2\"><\/div>\n\n    <div class=\"pair\" id=\"eyebrow\" data-g=\"head\"><span class=\"o\">CURRENT JOURNEY<\/span><span class=\"n\">NEW JOURNEY<\/span><\/div>\n    <div class=\"pair\" id=\"title\" data-g=\"head\"><span class=\"o\">Yoxi 出現得太晚<\/span><span class=\"n\">不搭車，也打開 Yoxi<\/span><\/div>\n    <div class=\"pair\" id=\"sub\" data-g=\"head\"><span class=\"o\">使用者已經決定出發，才打開叫車 App<\/span><span class=\"n\">提前進入「大家正在決定要不要出門」的階段<\/span><\/div>\n    <div id=\"logo\"><span>yoxi<\/span><\/div>\n\n    <div id=\"journey\"><\/div>\n\n    <div class=\"pair\" id=\"bottom\"><span class=\"o\">需求已經形成，Yoxi 只能承接訂單<\/span><span class=\"n\">從等待需求，升級為主動創造移動<\/span><\/div>\n    <div class=\"pair\" id=\"footer\" data-g=\"head\"><span class=\"o\">02&nbsp; Yoxi 今晚揪一下<\/span><span class=\"n\">03&nbsp; Yoxi 今晚揪一下<\/span><\/div>\n  <\/div>\n<\/div>\n\n",init:function(root){
+
+  const stage = root.getElementById('stage');
+  const journey = root.getElementById('journey');
+  const CX = [260, 720, 1180, 1640];
+  const OLD = ['想聚會', '反覆討論', '確定行程', '打開 Yoxi'];
+  const NEW = ['打開 Yoxi', '發起聚會', 'AI 完成決策', '叫車抵達'];
+  const ARROW = '<svg width="308" height="28" viewBox="0 0 308 28" fill="currentColor"><rect x="0" y="11" width="282" height="6"/><polygon points="282,0 308,14 282,28"/></svg>';
+
+  let html = '';
+  CX.forEach((x, i) => {
+    html += `<div class="node ${i === 3 ? 'start' : ''}" id="n${i}" style="left:${x - 52}px"><div class="ring"></div></div>`;
+    html += `<div class="pair label ${i === 3 ? 'last' : ''}" id="l${i}" style="left:${x - 200}px"><span class="o">${OLD[i]}</span><span class="n">${NEW[i]}</span></div>`;
+    if (i < 3) html += `<div class="arrow" style="left:${x + 76}px"><div class="base">${ARROW}</div><div class="fill" id="a${i}">${ARROW}</div></div>`;
+  });
+  journey.innerHTML = html;
+
+  const $ = id => root.getElementById(id);
+  const heads = [...root.querySelectorAll('[data-g="head"]')];
+  let timers = [];
+  const at = (ms, fn) => timers.push(setTimeout(fn, ms));
+  const ring = i => { const r = $('n' + i).querySelector('.ring'); r.classList.remove('go'); void r.offsetWidth; r.classList.add('go'); };
+
+  function fit() {
+    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = `translate(-50%, -50%) scale(${s})`;
+  }
+  addEventListener('resize', fit); fit();
+
+  function reset() {
+    stage.classList.add('noanim');
+    root.querySelectorAll('.pair').forEach(p => p.classList.remove('sw'));
+    for (let i = 0; i < 4; i++) { const n = $('n' + i); n.className = 'node' + (i === 3 ? ' start' : ''); n.querySelector('.ring').classList.remove('go'); }
+    for (let i = 0; i < 3; i++) $('a' + i).className = 'fill';
+    void stage.offsetWidth;
+    stage.classList.remove('noanim');
+  }
+
+  function play() {
+    timers.forEach(clearTimeout); timers = [];
+    reset();
+    // 0–1.2s 原始畫面 → 文字切換 → 紅色脈衝依序通過三個節點 → 抵達叫車變黃 → 收尾句切換 → 循環
+    at(1200, () => heads.forEach(h => h.classList.add('sw')));
+    at(1400, () => { $('l0').classList.add('sw'); $('n3').className = 'node gray'; });
+    at(1500, () => $('l1').classList.add('sw'));
+    at(1600, () => $('l2').classList.add('sw'));
+    at(1700, () => $('l3').classList.add('sw'));
+    at(2200, () => { $('n0').classList.add('red'); ring(0); });
+    at(2500, () => $('a0').classList.add('on'));
+    at(3300, () => { $('n1').classList.add('red'); ring(1); });
+    at(3600, () => $('a1').classList.add('on'));
+    at(4400, () => { $('n2').classList.add('red'); ring(2); });
+    at(4700, () => $('a2').classList.add('on'));
+    at(5500, () => { $('a2').classList.add('yellow'); $('n3').className = 'node yellow'; ring(3); });
+    at(6300, () => $('bottom').classList.add('sw'));
+
+  }
+
+
+
+
+return {play:play,stop:function(){timers.forEach(clearTimeout);timers=[];if(typeof raf!=='undefined'){raf.forEach(cancelAnimationFrame);raf=[];}}};
+}},
+{name:"04 市場契合",css:"\n  :host {\n    --navy: #061833; --navy-2: #0d2444; --white: #fff; --coral: #ff2d55; --yellow: #ffc92a; --muted: #8a97ad; --ink: #1b2a44;\n    box-sizing: border-box;\n    padding-top: env(safe-area-inset-top, 0px);\n    padding-bottom: env(safe-area-inset-bottom, 0px);\n  }\n  .__x { scroll-padding-top: env(safe-area-inset-top, 0px); }\n  :host { height: 100%; margin: 0; }\n  :host { background: #020b18; overflow: hidden; font-family: \"Noto Sans TC\", \"PingFang TC\", \"Microsoft JhengHei\", sans-serif; }\n  #viewport { position: fixed; inset: 0; cursor: pointer; }\n  #stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; background: var(--navy); overflow: hidden; transform-origin: center center; }\n  .circle { position: absolute; border-radius: 50%; background: var(--navy-2); }\n  #c1 { width: 760px; height: 760px; left: 1520px; top: -320px; }\n  #c2 { width: 840px; height: 840px; left: -325px; top: 760px; }\n  .abs { position: absolute; white-space: nowrap; }\n  #eyebrow { left: 100px; top: 64px; font-size: 26px; color: var(--coral); }\n  #title { left: 100px; top: 108px; font-size: 64px; font-weight: 500; color: var(--white); line-height: 80px; }\n  #sub { left: 102px; top: 178px; font-size: 26px; color: var(--muted); }\n  #footer { left: 100px; top: 1028px; font-size: 20px; color: #5b6a82; }\n  #logo { position: absolute; left: 1540px; top: 70px; width: 301px; height: 87px; border-radius: 20px; background: var(--white); overflow: hidden; }\n  #logo svg { display: block; width: 100%; height: 100%; }\n\n  .card { position: absolute; top: 310px; width: 520px; height: 390px; border-radius: 56px; background: var(--white);\n    box-shadow: 0 14px 30px rgba(0,0,0,.25); opacity: 0; }\n  .card .big { position: absolute; left: 0; width: 100%; top: 62px; text-align: center; font-size: 80px; font-weight: 400; line-height: 100px; color: var(--coral); white-space: nowrap; letter-spacing: -2px; }\n  .card .txt { position: absolute; left: 0; width: 100%; top: 200px; text-align: center; font-size: 31px; line-height: 38px; color: var(--ink); white-space: nowrap; }\n\n  /* 1: slide up */\n  #k1 { transform: translateY(80px); transition: opacity .9s ease-out, transform 1s cubic-bezier(.2,.7,.2,1); }\n  #k1.show { opacity: 1; transform: none; }\n  /* 2: scale into focus */\n  #k2 { transform: scale(.86); transition: opacity .9s ease-out, transform 1.1s cubic-bezier(.25,.8,.25,1); }\n  #k2.show { opacity: 1; transform: none; }\n  /* 3: fade in, then subtle coral glow */\n  #k3 { transition: opacity .9s ease-out, box-shadow 1.2s ease; }\n  #k3.show { opacity: 1; }\n  #k3.glow { box-shadow: 0 0 44px rgba(255,45,85,.38), 0 14px 30px rgba(0,0,0,.25); }\n\n  #link { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; pointer-events: none; }\n  #main { stroke-dasharray: 1220; stroke-dashoffset: 1220; transition: stroke-dashoffset 1.8s cubic-bezier(.4,0,.3,1); }\n  #main.on { stroke-dashoffset: 0; }\n  #mid { opacity: 0; transition: opacity .5s ease; } #mid.on { opacity: 1; }\n\n  #claim { left: 0; width: 1920px; top: 782px; display: flex; justify-content: center; align-items: center; gap: 36px; font-size: 44px; font-weight: 500; color: var(--yellow); line-height: 64px; opacity: 0; transform: translateY(10px); transition: opacity .8s ease, transform .8s ease; }\n  #claim.on { opacity: 1; transform: none; }\n  #src { left: 0; width: 1920px; top: 870px; text-align: center; font-size: 22px; color: #7d8aa3; opacity: 0; transition: opacity .8s ease; } #src.on { opacity: 1; }\n\n  #stage.noanim, #stage.noanim * { transition: none !important; }\n",html:"\n<div id=\"viewport\">\n  <div id=\"stage\">\n    <div class=\"circle\" id=\"c1\"><\/div><div class=\"circle\" id=\"c2\"><\/div>\n    <div class=\"abs\" id=\"eyebrow\">MARKET FIT<\/div>\n    <div class=\"abs\" id=\"title\">為什麼從朋友聚會切入？<\/div>\n    <div class=\"abs\" id=\"sub\">Yoxi 的年輕客群，正好落在高社交需求區間<\/div>\n    <div id=\"logo\"><\/div>\n\n    <svg id=\"link\" viewBox=\"0 0 1920 1080\">\n      <defs><linearGradient id=\"grad\" gradientUnits=\"userSpaceOnUse\" x1=\"360\" y1=\"0\" x2=\"1510\" y2=\"0\"><stop offset=\"0\" stop-color=\"#ff2d55\"/><stop offset=\"1\" stop-color=\"#ffc92a\"/><\/linearGradient><\/defs>\n      <path id=\"main\" d=\"M360 702 V738 H1510 V702\" fill=\"none\" stroke=\"url(#grad)\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      <path id=\"mid\" d=\"M935 738 V702\" fill=\"none\" stroke=\"#ff9a40\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n    <\/svg>\n\n    <div class=\"card\" id=\"k1\" style=\"left:100px\"><div class=\"big\">20–30歲<\/div><div class=\"txt\">Yoxi／iRent<br>主要客群<\/div><\/div>\n    <div class=\"card\" id=\"k2\" style=\"left:675px\"><div class=\"big\">42%<\/div><div class=\"txt\">20–29歲每兩週<br>至少聚會一次<\/div><\/div>\n    <div class=\"card\" id=\"k3\" style=\"left:1250px\"><div class=\"big\">74.4%<\/div><div class=\"txt\">聚會包含聊天、<br>更新近況或抒發壓力<\/div><\/div>\n\n    <div class=\"abs\" id=\"claim\"><span>受眾吻合<\/span><span>×<\/span><span>需求高頻<\/span><span>×<\/span><span>必然產生移動<\/span><\/div>\n    <div class=\"abs\" id=\"src\">來源：和泰聯網主管專訪；東方線上調查<\/div>\n    <div class=\"abs\" id=\"footer\">04&nbsp; Yoxi 今晚揪一下<\/div>\n  <\/div>\n<\/div>\n\n",init:function(root){
+
+  const $ = id => root.getElementById(id);
+  const stage = $('stage');
+  $('logo').innerHTML = '<svg viewBox="0 0 496 142" xmlns="http://www.w3.org/2000/svg"><path d="M70 22H163C160 72 135 110 80 121C83 90 77 55 70 22Z" fill="#e60026"/><text x="180" y="105" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-style="italic" font-size="118" fill="#e60026" textLength="250" lengthAdjust="spacingAndGlyphs">yoxi</text></svg>';
+
+  let timers = [];
+  const at = (ms, fn) => timers.push(setTimeout(fn, ms));
+
+  function fit() {
+    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = `translate(-50%, -50%) scale(${s})`;
+  }
+  addEventListener('resize', fit); fit();
+
+  function reset() {
+    stage.classList.add('noanim');
+    ['k1', 'k2', 'k3'].forEach(i => $(i).classList.remove('show', 'glow'));
+    ['main', 'mid', 'claim', 'src'].forEach(i => $(i).classList.remove('on'));
+    void stage.offsetWidth;
+    stage.classList.remove('noanim');
+  }
+
+  function play() {
+    timers.forEach(clearTimeout); timers = [];
+    reset();
+    // 第一張向上滑入 → 第二張輕輕放大聚焦 → 第三張淡入並帶淡淡珊瑚紅光暈 → 細線由珊瑚紅漸變為計程車黃連起三張 → 結論文字
+    at(600,  () => $('k1').classList.add('show'));
+    at(2000, () => $('k2').classList.add('show'));
+    at(3400, () => $('k3').classList.add('show'));
+    at(4300, () => $('k3').classList.add('glow'));
+    at(5600, () => $('main').classList.add('on'));
+    at(6500, () => $('mid').classList.add('on'));
+    at(7600, () => { $('claim').classList.add('on'); $('src').classList.add('on'); });
+
+  }
+
+
+
+
+return {play:play,stop:function(){timers.forEach(clearTimeout);timers=[];if(typeof raf!=='undefined'){raf.forEach(cancelAnimationFrame);raf=[];}}};
+}},
+{name:"05 頻率資料",css:"\n  :host {\n    --navy: #061833; --navy-2: #0d2444; --white: #fff; --coral: #ff2d55; --muted: #8a97ad;\n    box-sizing: border-box;\n    padding-top: env(safe-area-inset-top, 0px);\n    padding-bottom: env(safe-area-inset-bottom, 0px);\n  }\n  .__x { scroll-padding-top: env(safe-area-inset-top, 0px); }\n  :host { height: 100%; margin: 0; }\n  :host { background: #020b18; overflow: hidden; font-family: \"Noto Sans TC\", \"PingFang TC\", \"Microsoft JhengHei\", sans-serif; }\n  #viewport { position: fixed; inset: 0; cursor: pointer; }\n  #stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; background: var(--navy); overflow: hidden; transform-origin: center center; }\n  .circle { position: absolute; border-radius: 50%; background: var(--navy-2); }\n  #c1 { width: 760px; height: 760px; left: 1520px; top: -320px; }\n  #c2 { width: 840px; height: 840px; left: -325px; top: 760px; }\n  .abs { position: absolute; white-space: nowrap; }\n  #eyebrow { left: 100px; top: 64px; font-size: 26px; color: var(--coral); }\n  #title { left: 100px; top: 108px; font-size: 64px; font-weight: 500; color: var(--white); line-height: 80px; }\n  #sub { left: 102px; top: 178px; font-size: 26px; color: var(--muted); }\n  #footer { left: 100px; top: 1028px; font-size: 20px; color: #5b6a82; }\n  #logo { position: absolute; left: 1540px; top: 70px; width: 301px; height: 87px; border-radius: 20px; background: var(--white); overflow: hidden; }\n  #logo svg { display: block; width: 100%; height: 100%; }\n\n  .card { position: absolute; top: 280px; width: 520px; height: 420px; box-sizing: border-box; border-radius: 56px; background: var(--white);\n    box-shadow: inset 0 0 0 2px #dfe5ee, 0 14px 30px rgba(0,0,0,.25);\n    opacity: 0; transform: translateY(22px);\n    transition: opacity .7s ease-out, transform .7s ease-out, box-shadow .6s ease; }\n  .card.show { opacity: 1; transform: none; }\n  .card.dim { opacity: .45; }\n  .card.focus { box-shadow: inset 0 0 0 6px var(--coral), 0 14px 30px rgba(0,0,0,.25); }\n  .card .h { position: absolute; left: 0; width: 100%; top: 36px; text-align: center; font-size: 48px; line-height: 64px; color: #5f7087; transition: color .6s ease; }\n  .card.focus .h { color: var(--coral); }\n  .card .r { position: absolute; left: 0; width: 100%; text-align: center; font-size: 38px; line-height: 52px; color: #1b2a44; white-space: nowrap; }\n  .card .n { font-variant-numeric: tabular-nums; }\n  .card .f { position: absolute; left: 0; width: 100%; top: 308px; text-align: center; font-size: 26px; line-height: 36px; color: #6b7a90; white-space: nowrap; }\n\n  #bar { position: absolute; left: 430px; top: 765px; width: 1060px; height: 160px; box-sizing: border-box; border: 3px solid var(--coral); border-radius: 38px; background: #16376a;\n    opacity: 0; transform: translateY(22px); transition: opacity .7s ease-out, transform .7s ease-out, opacity .6s; }\n  #bar.show { opacity: 1; transform: none; }\n  #bar.dim { opacity: .55; }\n  #big { position: absolute; left: 0; width: 100%; top: 22px; text-align: center; font-size: 48px; line-height: 62px; color: var(--white); white-space: nowrap; transform-origin: center; transition: transform .9s cubic-bezier(.3,0,.2,1); }\n  #bar.pop #big { transform: scale(1.1); }\n  #big .num { font-variant-numeric: tabular-nums; }\n  #bar .s { position: absolute; left: 0; width: 100%; top: 100px; text-align: center; font-size: 24px; line-height: 34px; color: #9fb0c8; white-space: nowrap; transition: opacity .8s ease; }\n  #bar.pop .s { opacity: .6; }\n\n  #stage.noanim, #stage.noanim * { transition: none !important; }\n",html:"\n<div id=\"viewport\">\n  <div id=\"stage\">\n    <div class=\"circle\" id=\"c1\"><\/div><div class=\"circle\" id=\"c2\"><\/div>\n    <div class=\"abs\" id=\"eyebrow\">DATA DRIVEN<\/div>\n    <div class=\"abs\" id=\"title\">真正適合先投資的是中頻<\/div>\n    <div class=\"abs\" id=\"sub\">已有行為資料，也仍有升頻空間<\/div>\n    <div id=\"logo\"><\/div>\n\n    <div class=\"card\" id=\"low\" style=\"left:100px\">\n      <div class=\"h\">低頻<\/div>\n      <div class=\"r\" style=\"top:122px\"><span class=\"n\" data-v=\"65.5\" data-d=\"1\">65.5<\/span>% 用戶<\/div>\n      <div class=\"r\" style=\"top:187px\"><span class=\"n\" data-v=\"16.5\" data-d=\"1\">16.5<\/span>% 訂單<\/div>\n      <div class=\"f\">人多，但行為資料不足<\/div>\n    <\/div>\n    <div class=\"card\" id=\"mid\" style=\"left:675px\">\n      <div class=\"h\">中頻<\/div>\n      <div class=\"r\" style=\"top:122px\"><span class=\"n\" data-v=\"25.9\" data-d=\"1\">25.9<\/span>% 用戶<\/div>\n      <div class=\"r\" style=\"top:187px\"><span class=\"n\" data-v=\"32.7\" data-d=\"1\">32.7<\/span>% 訂單<\/div>\n      <div class=\"f\">有資料，也有升頻空間<\/div>\n    <\/div>\n    <div class=\"card\" id=\"high\" style=\"left:1250px\">\n      <div class=\"h\">高頻<\/div>\n      <div class=\"r\" style=\"top:122px\"><span class=\"n\" data-v=\"8.6\" data-d=\"1\">8.6<\/span>% 用戶<\/div>\n      <div class=\"r\" style=\"top:187px\"><span class=\"n\" data-v=\"50.8\" data-d=\"1\">50.8<\/span>% 訂單<\/div>\n      <div class=\"f\">價值高，但原本就常搭<\/div>\n    <\/div>\n\n    <div id=\"bar\">\n      <div id=\"big\"><span class=\"num\" data-v=\"17432\" data-d=\"0\">17,432<\/span> 名中頻生活潛力族<\/div>\n      <div class=\"s\">90 天搭乘 5–19 次，且週末白天或 21:00 後至少搭乘 3 趟<\/div>\n    <\/div>\n    <div class=\"abs\" id=\"footer\">05&nbsp; Yoxi 今晚揪一下<\/div>\n  <\/div>\n<\/div>\n\n",init:function(root){
+
+  const $ = id => root.getElementById(id);
+  const stage = $('stage');
+  $('logo').innerHTML = '<svg viewBox="0 0 496 142" xmlns="http://www.w3.org/2000/svg"><path d="M70 22H163C160 72 135 110 80 121C83 90 77 55 70 22Z" fill="#e60026"/><text x="180" y="105" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-style="italic" font-size="118" fill="#e60026" textLength="250" lengthAdjust="spacingAndGlyphs">yoxi</text></svg>';
+
+  const fmt = (v, d) => d ? v.toFixed(d) : Math.round(v).toLocaleString('en-US');
+  let timers = [], raf = [];
+  const at = (ms, fn) => timers.push(setTimeout(fn, ms));
+
+  function fit() {
+    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = `translate(-50%, -50%) scale(${s})`;
+  }
+  addEventListener('resize', fit); fit();
+
+  // 數字由 0 滾動到最終值；結束時一定停在原始數值
+  function count(root, dur) {
+    root.querySelectorAll('[data-v]').forEach(el => {
+      const v = parseFloat(el.dataset.v), d = +el.dataset.d, t0 = performance.now();
+      const step = now => {
+        const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+        el.textContent = p < 1 ? fmt(v * e, d) : fmt(v, d);
+        if (p < 1) raf.push(requestAnimationFrame(step));
+      };
+      raf.push(requestAnimationFrame(step));
+    });
+  }
+  const reveal = (id, dur = 900) => { const el = $(id); el.classList.add('show'); count(el, dur); };
+
+  function reset() {
+    raf.forEach(cancelAnimationFrame); raf = [];
+    stage.classList.add('noanim');
+    ['low', 'mid', 'high', 'bar'].forEach(i => $(i).classList.remove('show', 'dim', 'focus', 'pop'));
+    root.querySelectorAll('[data-v]').forEach(el => el.textContent = fmt(parseFloat(el.dataset.v), +el.dataset.d));
+    void stage.offsetWidth;
+    stage.classList.remove('noanim');
+  }
+
+  function play() {
+    timers.forEach(clearTimeout); timers = [];
+    reset();
+    // 低頻 → 高頻 → 中頻（珊瑚紅外框聚焦，其餘淡出）→ 17,432 放大強調
+    at(500,  () => reveal('low'));
+    at(1700, () => reveal('high'));
+    at(3000, () => reveal('mid'));
+    at(4100, () => { $('mid').classList.add('focus'); $('low').classList.add('dim'); $('high').classList.add('dim'); });
+    at(5400, () => reveal('bar', 1400));
+    at(7300, () => { $('bar').classList.add('pop'); $('mid').classList.add('dim'); });
+
+  }
+
+
+
+
+return {play:play,stop:function(){timers.forEach(clearTimeout);timers=[];if(typeof raf!=='undefined'){raf.forEach(cancelAnimationFrame);raf=[];}}};
+}},
+{name:"06 三大核心",css:"\n  :host {\n    --navy: #061833; --navy-2: #0d2444; --white: #fff; --coral: #ff2d55; --yellow: #ffc92a; --muted: #8a97ad; --ink: #1b2a44; --gray: #6b7a90; --track: #3a4b69;\n    box-sizing: border-box;\n    padding-top: env(safe-area-inset-top, 0px);\n    padding-bottom: env(safe-area-inset-bottom, 0px);\n  }\n  .__x { scroll-padding-top: env(safe-area-inset-top, 0px); }\n  :host { height: 100%; margin: 0; }\n  :host { background: #020b18; overflow: hidden; font-family: \"Noto Sans TC\", \"PingFang TC\", \"Microsoft JhengHei\", sans-serif; }\n  #viewport { position: fixed; inset: 0; cursor: pointer; }\n  #stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; background: var(--navy); overflow: hidden; transform-origin: center center; }\n  .circle { position: absolute; border-radius: 50%; background: var(--navy-2); }\n  #c1 { width: 760px; height: 760px; left: 1520px; top: -320px; }\n  #c2 { width: 840px; height: 840px; left: -325px; top: 760px; }\n  .abs { position: absolute; white-space: nowrap; }\n  #eyebrow { left: 100px; top: 64px; font-size: 26px; color: var(--coral); }\n  #title { left: 100px; top: 108px; font-size: 64px; font-weight: 500; color: var(--white); line-height: 80px; display: flex; gap: 22px; align-items: center; }\n  #title span { transition: opacity .7s ease; }\n  #title.dim span { opacity: .28; } #title.dim span.lit { opacity: 1; }\n  #sub { left: 102px; top: 178px; font-size: 26px; color: var(--muted); }\n  #footer { left: 100px; top: 1028px; font-size: 20px; color: #5b6a82; }\n  #logo { position: absolute; left: 1540px; top: 70px; width: 301px; height: 87px; border-radius: 20px; background: var(--white); overflow: hidden; }\n  #logo svg { display: block; width: 100%; height: 100%; }\n\n  .card { position: absolute; top: 315px; width: 501px; height: 421px; border-radius: 52px; background: var(--white); box-shadow: 0 14px 30px rgba(0,0,0,.25);\n    opacity: 0; transform: translateY(26px); transition: opacity .7s ease-out, transform .8s ease-out; }\n  .card.show { opacity: 1; transform: none; }\n  .num { position: absolute; left: 45px; top: 45px; width: 76px; height: 76px; border-radius: 50%; display: grid; place-items: center; font-size: 26px; color: #fff; background: var(--coral); transition: background-color .5s ease, color .5s ease; }\n  .num.y { background: var(--yellow); color: #1b2a44; }\n  .ring { position: absolute; inset: 0; border-radius: 50%; border: 3px solid var(--coral); opacity: 0; pointer-events: none; }\n  .ring.y { border-color: var(--yellow); }\n  .ring.go { animation: ring 1s ease-out; }\n  @keyframes ring { from { transform: scale(1); opacity: .75; } to { transform: scale(1.9); opacity: 0; } }\n  .t { position: absolute; left: 0; width: 100%; top: 176px; text-align: center; font-size: 50px; font-weight: 500; line-height: 60px; color: var(--ink); white-space: nowrap; }\n  .d { position: absolute; left: 0; width: 100%; top: 276px; text-align: center; font-size: 28px; line-height: 36px; color: var(--gray); white-space: nowrap; }\n\n  .arrow { position: absolute; top: 512px; width: 41px; height: 26px; }\n  .arrow > svg { position: absolute; left: 0; top: 0; }\n  .arrow .base { color: var(--track); opacity: .5; }\n  .arrow .fill { position: absolute; left: 0; top: 0; width: 0; height: 26px; overflow: hidden; color: var(--coral); transition: width .6s cubic-bezier(.45,0,.3,1), color .4s ease; }\n  .arrow .fill.on { width: 41px; } .arrow .fill.yellow { color: var(--yellow); }\n\n  #stage.noanim, #stage.noanim * { transition: none !important; animation: none !important; }\n",html:"\n<div id=\"viewport\">\n  <div id=\"stage\">\n    <div class=\"circle\" id=\"c1\"><\/div><div class=\"circle\" id=\"c2\"><\/div>\n    <div class=\"abs\" id=\"eyebrow\">SOLUTION<\/div>\n    <div class=\"abs\" id=\"title\"><span id=\"w0\">打開<\/span><span id=\"a0\">→<\/span><span id=\"w1\">成局<\/span><span id=\"a1\">→<\/span><span id=\"w2\">乘車<\/span><\/div>\n    <div class=\"abs\" id=\"sub\">三個核心，把生活需求轉成新增移動<\/div>\n    <div id=\"logo\"><\/div>\n\n    <div class=\"card\" id=\"k0\" style=\"left:115px\"><div class=\"num\" id=\"n0\">01<div class=\"ring\" id=\"r0\"><\/div><\/div><div class=\"t\">精準觸發<\/div><div class=\"d\">創造打開理由<\/div><\/div>\n    <div class=\"card\" id=\"k1\" style=\"left:685px\"><div class=\"num\" id=\"n1\">02<div class=\"ring\" id=\"r1\"><\/div><\/div><div class=\"t\">AI 喬局<\/div><div class=\"d\">讓朋友真的約得成<\/div><\/div>\n    <div class=\"card\" id=\"k2\" style=\"left:1255px\"><div class=\"num\" id=\"n2\">03<div class=\"ring y\" id=\"r2\"><\/div><\/div><div class=\"t\">移動閉環<\/div><div class=\"d\">把成局轉成乘車<\/div><\/div>\n\n    <div class=\"arrow\" style=\"left:630px\"><div class=\"base\" id=\"b0\"><\/div><div class=\"fill\" id=\"f0\"><\/div><\/div>\n    <div class=\"arrow\" style=\"left:1200px\"><div class=\"base\" id=\"b1\"><\/div><div class=\"fill\" id=\"f1\"><\/div><\/div>\n    <div class=\"abs\" id=\"footer\">06&nbsp; Yoxi 今晚揪一下<\/div>\n  <\/div>\n<\/div>\n\n",init:function(root){
+
+  const $ = id => root.getElementById(id);
+  const stage = $('stage');
+  $('logo').innerHTML = '<svg viewBox="0 0 496 142" xmlns="http://www.w3.org/2000/svg"><path d="M70 22H163C160 72 135 110 80 121C83 90 77 55 70 22Z" fill="#e60026"/><text x="180" y="105" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-style="italic" font-size="118" fill="#e60026" textLength="250" lengthAdjust="spacingAndGlyphs">yoxi</text></svg>';
+  const AR = '<svg width="41" height="26" viewBox="0 0 41 26" fill="currentColor"><rect x="0" y="10.5" width="28" height="5"/><polygon points="26,0 41,13 26,26"/></svg>';
+  ['b0', 'b1', 'f0', 'f1'].forEach(i => $(i).innerHTML = AR);
+
+  let timers = [];
+  const at = (ms, fn) => timers.push(setTimeout(fn, ms));
+  const ring = i => { const r = $('r' + i); r.classList.remove('go'); void r.offsetWidth; r.classList.add('go'); };
+
+  function fit() {
+    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = `translate(-50%, -50%) scale(${s})`;
+  }
+  addEventListener('resize', fit); fit();
+
+  function reset() {
+    stage.classList.add('noanim');
+    [0, 1, 2].forEach(i => { $('k' + i).classList.remove('show'); $('r' + i).classList.remove('go'); });
+    $('n2').classList.remove('y');
+    ['f0', 'f1'].forEach(i => $(i).className = 'fill');
+    $('title').classList.remove('dim');
+    ['w0', 'a0', 'w1', 'a1', 'w2'].forEach(i => $(i).classList.remove('lit'));
+    void stage.offsetWidth;
+    stage.classList.remove('noanim');
+  }
+
+  function play() {
+    timers.forEach(clearTimeout); timers = [];
+    reset();
+    // 由左到右依序出現；珊瑚紅脈衝經過「精準觸發」「AI 喬局」，到「移動閉環」轉為計程車黃；最後標題「打開 → 成局 → 乘車」依序點亮
+    at(600,  () => { $('k0').classList.add('show'); });
+    at(1200, () => ring(0));
+    at(1600, () => $('f0').classList.add('on'));
+    at(2300, () => { $('k1').classList.add('show'); });
+    at(2800, () => ring(1));
+    at(3200, () => $('f1').classList.add('on'));
+    at(3900, () => $('f1').classList.add('yellow'));
+    at(4000, () => { $('k2').classList.add('show'); $('n2').classList.add('y'); });
+    at(4600, () => ring(2));
+    at(5600, () => $('title').classList.add('dim'));
+    at(5800, () => $('w0').classList.add('lit'));
+    at(6400, () => { $('a0').classList.add('lit'); $('w1').classList.add('lit'); });
+    at(7000, () => { $('a1').classList.add('lit'); $('w2').classList.add('lit'); });
+
+  }
+
+
+
+
+return {play:play,stop:function(){timers.forEach(clearTimeout);timers=[];if(typeof raf!=='undefined'){raf.forEach(cancelAnimationFrame);raf=[];}}};
+}},
+{name:"07 推播通知",css:"\n  :host {\n    --navy: #061833; --navy-2: #0d2444; --white: #fff; --coral: #ff2d55; --yellow: #ffc92a; --muted: #8a97ad; --ink: #1b2a44; --gray: #6b7a90;\n    box-sizing: border-box;\n    padding-top: env(safe-area-inset-top, 0px);\n    padding-bottom: env(safe-area-inset-bottom, 0px);\n  }\n  .__x { scroll-padding-top: env(safe-area-inset-top, 0px); }\n  :host { height: 100%; margin: 0; }\n  :host { background: #020b18; overflow: hidden; font-family: \"Noto Sans TC\", \"PingFang TC\", \"Microsoft JhengHei\", sans-serif; }\n  #viewport { position: fixed; inset: 0; cursor: pointer; }\n  #stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; background: var(--navy); overflow: hidden; transform-origin: center center; }\n  #cam { position: absolute; inset: 0; transform-origin: 960px 533px; transition: transform 2.8s cubic-bezier(.4,0,.2,1); }\n  #stage.push #cam { transform: scale(1.08); }\n\n  .circle { position: absolute; border-radius: 50%; background: var(--navy-2); }\n  #c1 { width: 760px; height: 760px; left: 1520px; top: -320px; }\n  #c2 { width: 840px; height: 840px; left: -325px; top: 760px; }\n  .abs { position: absolute; white-space: nowrap; }\n  #eyebrow { left: 100px; top: 64px; font-size: 26px; color: var(--coral); }\n  #title { left: 100px; top: 108px; font-size: 64px; font-weight: 500; color: var(--white); line-height: 80px; }\n  #sub { left: 102px; top: 178px; font-size: 26px; color: var(--muted); }\n  #footer { left: 100px; top: 1028px; font-size: 20px; color: #5b6a82; }\n  #logo { position: absolute; left: 1540px; top: 70px; width: 301px; height: 87px; border-radius: 20px; background: var(--white); overflow: hidden; }\n  #logo svg { display: block; width: 100%; height: 100%; }\n\n  #phone { position: absolute; left: 610px; top: 250px; width: 701px; height: 691px; box-sizing: border-box; border-radius: 104px; background: var(--white); border: 20px solid var(--white);\n    box-shadow: 0 0 0 2px #dfe5ee; opacity: 0; transform: translateY(24px); transition: opacity .8s ease-out, transform .8s ease-out; }\n  #phone.show { opacity: 1; transform: none; }\n  #screen { position: absolute; inset: 0; border-radius: 84px; background: #f1f5f9; }\n  #notch { position: absolute; left: 255px; top: -2px; width: 151px; height: 17px; border-radius: 9px; background: #0f1f3a; }\n\n  #note { position: absolute; left: 50px; top: 120px; width: 561px; height: 286px; border-radius: 44px; background: var(--white);\n    box-shadow: 0 8px 20px rgba(15,31,58,.08); opacity: 0; transform: translateY(-18px);\n    transition: opacity .7s ease-out, transform .7s ease-out, box-shadow 1.2s ease; }\n  #note.show { opacity: 1; transform: none; }\n  #note.glow { box-shadow: 0 0 0 3px rgba(255,45,85,.18), 0 0 56px rgba(255,45,85,.38), 0 8px 20px rgba(15,31,58,.08); }\n  #note .brand { position: absolute; left: 46px; top: 24px; font-size: 28px; line-height: 40px; color: var(--coral); }\n  #note .hd { position: absolute; left: 46px; top: 90px; font-size: 36px; font-weight: 500; line-height: 50px; color: var(--ink); white-space: nowrap; }\n  #note .sb { position: absolute; left: 46px; top: 148px; font-size: 24px; line-height: 34px; color: var(--gray); white-space: nowrap; }\n  #note .rw { position: absolute; left: 46px; top: 198px; font-size: 24px; line-height: 34px; color: #9aa6b8; white-space: nowrap; transition: color .8s ease; }\n  #note .rw b { font-weight: 400; transition: font-weight .3s; }\n  #note.hl .rw { color: var(--yellow); font-weight: 500; }\n  #note.hl .rw b { font-weight: 700; }\n\n  #btn { position: absolute; left: 140px; top: 450px; width: 381px; height: 81px; border-radius: 41px; background: var(--coral); color: #fff; display: grid; place-items: center; font-size: 29px; font-weight: 500;\n    opacity: 0; transition: opacity .7s ease-out; }\n  #btn.show { opacity: 1; }\n  #btn::after { content: \"\"; position: absolute; inset: 0; border-radius: 41px; border: 3px solid var(--coral); opacity: 0; pointer-events: none; }\n  #btn.pulse { animation: bp .8s ease; }\n  #btn.pulse::after { animation: ring .9s ease-out; }\n  @keyframes bp { 0% { transform: scale(1); } 40% { transform: scale(1.07); } 100% { transform: scale(1); } }\n  @keyframes ring { 0% { transform: scale(1); opacity: .8; } 100% { transform: scale(1.32, 1.7); opacity: 0; } }\n\n  .side { position: absolute; top: 470px; font-size: 38px; line-height: 56px; white-space: nowrap; opacity: 0; transform: translateX(var(--dx)); transition: opacity .8s ease-out, transform .8s ease-out; }\n  .side.show { opacity: 1; transform: none; }\n  #l { left: 368px; color: var(--yellow); --dx: -20px; }\n  #r { left: 1431px; color: var(--coral); --dx: 20px; }\n  #cap { left: 0; width: 1920px; text-align: center; top: 966px; font-size: 27px; color: #8a97ad; opacity: 0; transition: opacity .8s ease; }\n  #cap.show { opacity: 1; }\n\n  #stage.noanim, #stage.noanim * { transition: none !important; animation: none !important; }\n",html:"\n<div id=\"viewport\">\n  <div id=\"stage\">\n    <div id=\"cam\">\n      <div class=\"circle\" id=\"c1\"><\/div><div class=\"circle\" id=\"c2\"><\/div>\n      <div class=\"abs\" id=\"eyebrow\">PRECISION TRIGGER<\/div>\n      <div class=\"abs\" id=\"title\">在需求形成前主動提案<\/div>\n      <div class=\"abs\" id=\"sub\">不是亂發通知，也不是等到叫車當下<\/div>\n      <div id=\"logo\"><\/div>\n\n      <div class=\"side\" id=\"l\">週四 16:30<\/div>\n      <div class=\"side\" id=\"r\">規劃窗口<\/div>\n\n      <div id=\"phone\">\n        <div id=\"screen\"><\/div>\n        <div id=\"notch\"><\/div>\n        <div id=\"note\">\n          <div class=\"brand\">Yoxi<\/div>\n          <div class=\"hd\">週五下班吃辣？<\/div>\n          <div class=\"sb\">邀 2–5 位朋友一起決定<\/div>\n          <div class=\"rw\">完成乘車，每人最高折 <b>NT$50<\/b><\/div>\n        <\/div>\n        <div id=\"btn\">建立活動房<\/div>\n      <\/div>\n\n      <div class=\"abs\" id=\"cap\">用既有行為判斷需求，在需求形成前觸發<\/div>\n      <div class=\"abs\" id=\"footer\">07&nbsp; Yoxi 今晚揪一下<\/div>\n    <\/div>\n  <\/div>\n<\/div>\n\n",init:function(root){
+
+  const $ = id => root.getElementById(id);
+  const stage = $('stage');
+  $('logo').innerHTML = '<svg viewBox="0 0 496 142" xmlns="http://www.w3.org/2000/svg"><path d="M70 22H163C160 72 135 110 80 121C83 90 77 55 70 22Z" fill="#e60026"/><text x="180" y="105" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-style="italic" font-size="118" fill="#e60026" textLength="250" lengthAdjust="spacingAndGlyphs">yoxi</text></svg>';
+
+  let timers = [];
+  const at = (ms, fn) => timers.push(setTimeout(fn, ms));
+
+  function fit() {
+    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = `translate(-50%, -50%) scale(${s})`;
+  }
+  addEventListener('resize', fit); fit();
+
+  function reset() {
+    stage.classList.add('noanim');
+    stage.classList.remove('push');
+    ['phone', 'note', 'btn', 'l', 'r', 'cap'].forEach(i => $(i).classList.remove('show', 'glow', 'hl', 'pulse'));
+    void stage.offsetWidth;
+    stage.classList.remove('noanim');
+  }
+
+  function play() {
+    timers.forEach(clearTimeout); timers = [];
+    reset();
+    // 手機出現 → 通知卡片滑入並帶柔和光暈 → 鏡頭緩緩推進 → 珊瑚紅按鈕脈衝一次 → NT$50 以計程車黃強調
+    at(400,  () => { $('phone').classList.add('show'); $('cap').classList.add('show'); });
+    at(1200, () => { $('note').classList.add('show'); $('btn').classList.add('show'); $('l').classList.add('show'); $('r').classList.add('show'); });
+    at(2100, () => $('note').classList.add('glow'));
+    at(3300, () => stage.classList.add('push'));
+    at(5400, () => $('btn').classList.add('pulse'));
+    at(6600, () => $('note').classList.add('hl'));
+
+  }
+
+
+
+
+return {play:play,stop:function(){timers.forEach(clearTimeout);timers=[];if(typeof raf!=='undefined'){raf.forEach(cancelAnimationFrame);raf=[];}}};
+}},
+{name:"08/09 邀請到活動房",css:"\n  :host {\n    --navy: #061833; --navy-2: #0d2444; --white: #fff; --coral: #ff2d55; --yellow: #ffc92a; --muted: #8a97ad; --ink: #1b2a44; --gray: #6b7a90;\n    box-sizing: border-box;\n    padding-top: env(safe-area-inset-top, 0px);\n    padding-bottom: env(safe-area-inset-bottom, 0px);\n  }\n  .__x { scroll-padding-top: env(safe-area-inset-top, 0px); }\n  :host { height: 100%; margin: 0; }\n  :host { background: #020b18; overflow: hidden; font-family: \"Noto Sans TC\", \"PingFang TC\", \"Microsoft JhengHei\", sans-serif; }\n  #viewport { position: fixed; inset: 0; cursor: pointer; }\n  #stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; background: var(--navy); overflow: hidden; transform-origin: center center; }\n  .circle { position: absolute; border-radius: 50%; background: var(--navy-2); }\n  #c1 { width: 760px; height: 760px; left: 1520px; top: -320px; }\n  #c2 { width: 840px; height: 840px; left: -325px; top: 760px; }\n  .abs { position: absolute; white-space: nowrap; }\n  #logo { position: absolute; left: 1540px; top: 70px; width: 301px; height: 87px; border-radius: 20px; background: var(--white); overflow: hidden; }\n  #logo svg { display: block; width: 100%; height: 100%; }\n\n  /* header text pairs (crossfade) */\n  .pair { position: absolute; display: grid; white-space: nowrap; justify-items: start; }\n  .pair > * { grid-area: 1 / 1; transition: opacity .7s ease; }\n  .pair > .n { opacity: 0; }\n  .pair.sw > .o { opacity: 0; } .pair.sw > .n { opacity: 1; }\n  #eyebrow { left: 100px; top: 64px; font-size: 26px; color: var(--coral); }\n  #title { left: 100px; top: 108px; font-size: 64px; font-weight: 500; color: var(--white); line-height: 80px; }\n  #sub { left: 102px; top: 178px; font-size: 26px; color: var(--muted); }\n  #footer { left: 100px; top: 1028px; font-size: 20px; color: #5b6a82; }\n\n  /* panel: phone -> wide activity-room card */\n  #panel { position: absolute; left: 610px; top: 250px; width: 701px; height: 691px; border-radius: 104px; background: var(--white); box-shadow: 0 0 0 2px #dfe5ee;\n    opacity: 0; transform: translateY(24px);\n    transition: opacity .8s ease-out, transform .8s ease-out, left 1.3s cubic-bezier(.65,0,.25,1), width 1.3s cubic-bezier(.65,0,.25,1), height 1.3s cubic-bezier(.65,0,.25,1), border-radius 1.3s cubic-bezier(.65,0,.25,1), box-shadow 1s ease; }\n  #panel.show { opacity: 1; transform: none; }\n  #stage.room #panel { left: 180px; width: 1561px; height: 681px; border-radius: 70px; box-shadow: 0 0 0 2px transparent; }\n  #screen { position: absolute; left: 20px; top: 20px; width: 661px; height: 651px; border-radius: 84px; background: #f1f5f9; transition: opacity .7s ease; }\n  #notch { position: absolute; left: 275px; top: 18px; width: 151px; height: 17px; border-radius: 9px; background: #0f1f3a; transition: opacity .5s ease; }\n  #inv { position: absolute; left: 70px; top: 105px; width: 561px; height: 436px; border-radius: 44px; background: var(--white); transition: opacity .7s ease; }\n  #stage.room #screen, #stage.room #notch, #stage.room #inv { opacity: 0; }\n\n  .tx { position: absolute; white-space: nowrap; opacity: 0; transition: opacity .6s ease; }\n  .show-in .tx, .tx.in { opacity: 1; }\n  #brand { left: 721px; top: 400px; font-size: 26px; line-height: 36px; color: var(--coral); }\n  .ln { left: 721px; font-size: 26px; line-height: 36px; color: var(--gray); }\n  #l1 { top: 535px; } #l2 { top: 586px; } #l3 { top: 636px; }\n  #deadline { left: 721px; top: 683px; font-size: 24px; line-height: 34px; color: var(--yellow); }\n  #stage.room #brand, #stage.room .ln, #stage.room #deadline { opacity: 0 !important; }\n\n  #tt { position: absolute; left: 721px; top: 463px; height: 60px; line-height: 60px; font-size: 44px; font-weight: 500; color: var(--ink); white-space: nowrap; opacity: 0;\n    transition: opacity .6s ease, left 1.3s cubic-bezier(.65,0,.25,1), top 1.3s cubic-bezier(.65,0,.25,1), font-size 1.3s cubic-bezier(.65,0,.25,1); }\n  #tt.in { opacity: 1; }\n  #stage.room #tt { left: 262px; top: 315px; font-size: 40px; }\n  #joined { left: 1388px; top: 322px; font-size: 26px; line-height: 40px; color: var(--coral); }\n\n  #btn { position: absolute; left: 750px; top: 815px; width: 421px; height: 61px; border-radius: 31px; background: var(--coral); color: #fff; display: grid; place-items: center; font-size: 26px; font-weight: 500; opacity: 0;\n    transition: opacity .7s ease, left 1.3s cubic-bezier(.65,0,.25,1), top 1.3s cubic-bezier(.65,0,.25,1), width 1.3s cubic-bezier(.65,0,.25,1), height 1.3s cubic-bezier(.65,0,.25,1), border-radius 1.3s cubic-bezier(.65,0,.25,1); }\n  #btn.in { opacity: 1; }\n  #btn > span { grid-area: 1 / 1; transition: opacity .5s ease; white-space: nowrap; }\n  #btn .b2 { opacity: 0; font-size: 24px; }\n  #stage.room #btn { left: 1265px; top: 852px; width: 376px; height: 54px; border-radius: 27px; }\n  #stage.room #btn .b1 { opacity: 0; } #stage.room #btn .b2 { opacity: 1; }\n\n  .lab { left: 262px; font-size: 28px; line-height: 40px; color: var(--gray); }\n  .chip { position: absolute; width: 231px; height: 66px; border-radius: 28px; background: #f1f5f9; color: var(--ink); display: grid; place-items: center; font-size: 26px; }\n  .chip.s { background: var(--coral); color: #fff; }\n  .u { opacity: 0; transform: translateY(16px) scale(.97); transition: opacity .6s ease-out, transform .7s cubic-bezier(.3,.8,.3,1); }\n  .u.go { opacity: 1; transform: none; }\n\n  #stage.noanim, #stage.noanim * { transition: none !important; }\n",html:"\n<div id=\"viewport\">\n  <div id=\"stage\">\n    <div class=\"circle\" id=\"c1\"><\/div><div class=\"circle\" id=\"c2\"><\/div>\n    <div class=\"pair\" id=\"eyebrow\"><span class=\"o\">INVITE<\/span><span class=\"n\">ACTIVITY ROOM<\/span><\/div>\n    <div class=\"pair\" id=\"title\"><span class=\"o\">LINE 只負責分享<\/span><span class=\"n\">影響成局的決策，都回到 Yoxi<\/span><\/div>\n    <div class=\"pair\" id=\"sub\"><span class=\"o\">一張足夠具體、可以直接回覆的邀請<\/span><span class=\"n\">時間、預算、出發區與共乘意願集中完成<\/span><\/div>\n    <div id=\"logo\"><\/div>\n\n    <div id=\"panel\"><div id=\"screen\"><\/div><div id=\"notch\"><\/div><div id=\"inv\"><\/div><\/div>\n\n    <div class=\"tx\" id=\"brand\">Yoxi 今晚揪一下<\/div>\n    <div id=\"tt\">週五下班吃辣<\/div>\n    <div class=\"tx ln\" id=\"l1\">週五 18:30–20:30<\/div>\n    <div class=\"tx ln\" id=\"l2\">中山／信義／東區<\/div>\n    <div class=\"tx ln\" id=\"l3\">目前 2 人<\/div>\n    <div class=\"tx\" id=\"deadline\">今晚 22:00 前完成投票<\/div>\n    <div class=\"tx\" id=\"joined\">2／5 人已加入<\/div>\n    <div id=\"btn\"><span class=\"b1\">加入 Yoxi 活動房<\/span><span class=\"b2\">送出選擇<\/span><\/div>\n\n    <div id=\"rows\"><\/div>\n    <div class=\"pair\" id=\"footer\"><span class=\"o\">08&nbsp; Yoxi 今晚揪一下<\/span><span class=\"n\">09&nbsp; Yoxi 今晚揪一下<\/span><\/div>\n  <\/div>\n<\/div>\n\n",init:function(root){
+
+  const $ = id => root.getElementById(id);
+  const stage = $('stage');
+  $('logo').innerHTML = '<svg viewBox="0 0 496 142" xmlns="http://www.w3.org/2000/svg"><path d="M70 22H163C160 72 135 110 80 121C83 90 77 55 70 22Z" fill="#e60026"/><text x="180" y="105" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-style="italic" font-size="118" fill="#e60026" textLength="250" lengthAdjust="spacingAndGlyphs">yoxi</text></svg>';
+
+  const ROWS = [
+    ['可到時間', ['18:30', '19:00', '19:30'], 1],
+    ['活動區域', ['中山', '信義', '東區'], 1],
+    ['每人預算', ['$500', '$800', '$1,000'], 1],
+    ['大致出發區', ['南港', '板橋', '松山'], 1],
+    ['共乘意願', ['願意', '各自前往', '都可以'], 0]
+  ];
+  const CX = [600, 860, 1120], TOP = [395, 485, 575, 665, 755];
+  $('rows').innerHTML = ROWS.map((r, i) =>
+    `<div class="abs lab u" id="lb${i}" style="top:${TOP[i] + 26}px">${r[0]}</div>` +
+    r[1].map((t, j) => `<div class="chip u ${j === r[2] ? 's' : ''}" id="c_${i}_${j}" style="left:${CX[j]}px;top:${TOP[i]}px">${t}</div>`).join('')
+  ).join('');
+
+  let timers = [];
+  const at = (ms, fn) => timers.push(setTimeout(fn, ms));
+  const addIn = (...ids) => ids.forEach(i => $(i).classList.add('in'));
+
+  function fit() {
+    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = `translate(-50%, -50%) scale(${s})`;
+  }
+  addEventListener('resize', fit); fit();
+
+  function reset() {
+    stage.classList.add('noanim');
+    stage.classList.remove('room');
+    $('panel').classList.remove('show');
+    ['tt', 'brand', 'l1', 'l2', 'l3', 'deadline', 'joined', 'btn'].forEach(i => $(i).classList.remove('in'));
+    root.querySelectorAll('.pair').forEach(p => p.classList.remove('sw'));
+    root.querySelectorAll('.u').forEach(u => u.classList.remove('go'));
+    void stage.offsetWidth;
+    stage.classList.remove('noanim');
+  }
+
+  function play() {
+    timers.forEach(clearTimeout); timers = [];
+    reset();
+    // 邀請卡 → 活動房：邀請卡標題移到活動房標題位置、其餘邀請文字淡出，按鈕移到右下並變成「送出選擇」，面板展開為寬卡片，投票選項逐列展開
+    at(500,  () => $('panel').classList.add('show'));
+    at(900,  () => addIn('brand', 'tt', 'l1', 'l2', 'l3', 'deadline', 'btn'));
+    at(3000, () => {
+      stage.classList.add('room');
+      root.querySelectorAll('.pair').forEach(p => p.classList.add('sw'));
+    });
+    at(4100, () => $('joined').classList.add('in'));
+    ROWS.forEach((r, i) => {
+      at(4300 + i * 330, () => {
+        $('lb' + i).classList.add('go');
+        r[1].forEach((_, j) => at(j * 90, () => $('c_' + i + '_' + j).classList.add('go')));
+      });
+    });
+
+  }
+
+
+
+
+return {play:play,stop:function(){timers.forEach(clearTimeout);timers=[];if(typeof raf!=='undefined'){raf.forEach(cancelAnimationFrame);raf=[];}}};
+}},
+{name:"10 AI 方案",css:"\n  :host {\n    --navy: #061833; --navy-2: #0d2444; --white: #fff; --coral: #ff2d55; --muted: #8a97ad; --gray: #6b7a90; --ink: #1b2a44; --blue: #16376a;\n    box-sizing: border-box;\n    padding-top: env(safe-area-inset-top, 0px);\n    padding-bottom: env(safe-area-inset-bottom, 0px);\n  }\n  .__x { scroll-padding-top: env(safe-area-inset-top, 0px); }\n  :host { height: 100%; margin: 0; }\n  :host { background: #020b18; overflow: hidden; font-family: \"Noto Sans TC\", \"PingFang TC\", \"Microsoft JhengHei\", sans-serif; }\n  #viewport { position: fixed; inset: 0; cursor: pointer; }\n  #stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; background: var(--navy); overflow: hidden; transform-origin: center center; }\n  .circle { position: absolute; border-radius: 50%; background: var(--navy-2); }\n  #c1 { width: 760px; height: 760px; left: 1520px; top: -320px; }\n  #c2 { width: 840px; height: 840px; left: -325px; top: 760px; }\n  .abs { position: absolute; white-space: nowrap; }\n  #eyebrow { left: 100px; top: 64px; font-size: 26px; color: var(--coral); }\n  #title { left: 100px; top: 108px; font-size: 64px; font-weight: 500; color: var(--white); line-height: 80px; }\n  #sub { left: 102px; top: 178px; font-size: 26px; color: var(--muted); }\n  #footer { left: 100px; top: 1028px; font-size: 20px; color: #5b6a82; }\n  #logo { position: absolute; left: 1540px; top: 70px; width: 301px; height: 87px; border-radius: 20px; background: var(--white); overflow: hidden; }\n  #logo svg { display: block; width: 100%; height: 100%; }\n\n  .card { position: absolute; top: 300px; width: 520px; height: 460px; box-sizing: border-box; border-radius: 56px; background: var(--white);\n    box-shadow: inset 0 0 0 2px #dfe5ee, 0 14px 30px rgba(0,0,0,.25);\n    opacity: 0; transform: translateY(24px); transition: opacity .7s ease-out, transform .7s ease-out, box-shadow .7s ease; }\n  .card.show { opacity: 1; transform: none; }\n  .card.rest { opacity: .62; }\n  .card.hi { box-shadow: inset 0 0 0 6px var(--coral), 0 14px 30px rgba(0,0,0,.25); }\n\n  .plan { position: absolute; left: 56px; top: 56px; font-size: 32px; line-height: 40px; color: #5f7087; white-space: nowrap; transition: color .7s ease; }\n  .tag { position: absolute; left: 45px; top: 110px; width: 151px; height: 49px; border-radius: 25px; background: #eef2f7; display: grid; place-items: center; font-size: 20px; color: var(--blue); white-space: nowrap; transition: color .7s ease; }\n  .name { position: absolute; left: 0; width: 100%; top: 180px; text-align: center; font-size: 36px; font-weight: 700; line-height: 54px; color: var(--ink); white-space: nowrap; }\n  .stat, .why { position: absolute; left: 0; width: 100%; text-align: center; white-space: nowrap; opacity: .15; transition: opacity .7s ease, color .7s ease; }\n  .stat { top: 256px; font-size: 26px; line-height: 38px; color: var(--gray); }\n  .why { top: 332px; font-size: 24px; line-height: 36px; color: var(--gray); }\n  .lit { opacity: 1; }\n  .badge { position: absolute; left: 335px; top: 30px; width: 136px; height: 53px; border-radius: 27px; background: var(--coral); color: #fff; display: grid; place-items: center; font-size: 22px; opacity: 0; transition: opacity .7s ease; }\n  .card.hi .badge { opacity: 1; }\n  .card.hi .plan, .card.hi .tag, .card.hi .why { color: var(--coral); }\n\n  .chip { position: absolute; top: 830px; width: 271px; height: 66px; border-radius: 33px; background: var(--blue); color: #fff; display: grid; place-items: center; font-size: 24px; font-weight: 500;\n    opacity: 0; transform: translateY(12px); transition: opacity .6s ease, transform .6s ease; }\n  .chip.show { opacity: 1; transform: none; }\n\n  #stage.noanim, #stage.noanim * { transition: none !important; }\n",html:"\n<div id=\"viewport\">\n  <div id=\"stage\">\n    <div class=\"circle\" id=\"c1\"><\/div><div class=\"circle\" id=\"c2\"><\/div>\n    <div class=\"abs\" id=\"eyebrow\">AI COORDINATION<\/div>\n    <div class=\"abs\" id=\"title\">把多人限制，轉成三個能執行的方案<\/div>\n    <div class=\"abs\" id=\"sub\">共同時間、公平地點、交通成本與推薦理由<\/div>\n    <div id=\"logo\"><\/div>\n\n    <div class=\"card\" id=\"A\" style=\"left:100px\"><div class=\"badge\">AI 建議<\/div><div class=\"plan\">方案 A<\/div><div class=\"tag\">交通最公平<\/div><div class=\"name\">寧夏夜市<\/div><div class=\"stat\">平均 18 分｜最遠 24 分<\/div><div class=\"why\">營業時間較晚，適合下班聚餐<\/div><\/div>\n    <div class=\"card\" id=\"B\" style=\"left:675px\"><div class=\"plan\">方案 B<\/div><div class=\"tag\">時間最彈性<\/div><div class=\"name\">錢櫃台北旗艦店<\/div><div class=\"stat\">平均 21 分｜最遠 29 分<\/div><div class=\"why\">營業時間長，不怕有人臨時加班<\/div><\/div>\n    <div class=\"card\" id=\"C\" style=\"left:1250px\"><div class=\"plan\">方案 C<\/div><div class=\"tag\">氣氛最好<\/div><div class=\"name\">淡水漁人碼頭<\/div><div class=\"stat\">平均 35 分｜最遠 48 分<\/div><div class=\"why\">適合傍晚散步看夕陽<\/div><\/div>\n\n    <div class=\"chip\" style=\"left:320px\">共同時間<\/div>\n    <div class=\"chip\" style=\"left:650px\">公平地點<\/div>\n    <div class=\"chip\" style=\"left:980px\">交通成本<\/div>\n    <div class=\"chip\" style=\"left:1310px\">推薦理由<\/div>\n    <div class=\"abs\" id=\"footer\">10&nbsp; Yoxi 今晚揪一下<\/div>\n  <\/div>\n<\/div>\n\n",init:function(root){
+
+  const $ = id => root.getElementById(id);
+  const stage = $('stage');
+  $('logo').innerHTML = '<svg viewBox="0 0 496 142" xmlns="http://www.w3.org/2000/svg"><path d="M70 22H163C160 72 135 110 80 121C83 90 77 55 70 22Z" fill="#e60026"/><text x="180" y="105" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-style="italic" font-size="118" fill="#e60026" textLength="250" lengthAdjust="spacingAndGlyphs">yoxi</text></svg>';
+
+  const chips = [...root.querySelectorAll('.chip')];
+  const cards = ['A', 'B', 'C'].map($);
+  let timers = [];
+  const at = (ms, fn) => timers.push(setTimeout(fn, ms));
+  const lit = (id, sel) => $(id).querySelector(sel).classList.add('lit');
+
+  function fit() {
+    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = `translate(-50%, -50%) scale(${s})`;
+  }
+  addEventListener('resize', fit); fit();
+
+  function reset() {
+    stage.classList.add('noanim');
+    cards.forEach(c => { c.classList.remove('show', 'rest', 'hi'); c.querySelectorAll('.lit').forEach(e => e.classList.remove('lit')); });
+    chips.forEach(c => c.classList.remove('show'));
+    void stage.offsetWidth;
+    stage.classList.remove('noanim');
+  }
+
+  function play() {
+    timers.forEach(clearTimeout); timers = [];
+    reset();
+    // 方案 A、B、C 依序出現，每張卡片先出現標籤與地點，再點亮時間與推薦理由 → 寧夏夜市以珊瑚紅聚焦 → 最後才顯示底部四個條件
+    chips.forEach((c, i) => at(10400 + i * 150, () => c.classList.add('show')));
+    [['A', 1100], ['B', 3600], ['C', 6100]].forEach(([id, t]) => {
+      at(t, () => $(id).classList.add('show'));
+      at(t + 900, () => lit(id, '.stat'));
+      at(t + 1600, () => lit(id, '.why'));
+    });
+    at(9000, () => { $('A').classList.add('hi'); $('B').classList.add('rest'); $('C').classList.add('rest'); });
+
+  }
+
+
+
+
+return {play:play,stop:function(){timers.forEach(clearTimeout);timers=[];if(typeof raf!=='undefined'){raf.forEach(cancelAnimationFrame);raf=[];}}};
+}},
+{name:"12 交通選擇",css:"\n  :host {\n    --navy: #061833; --navy-2: #0d2444; --white: #fff; --coral: #ff2d55; --yellow: #ffc92a; --muted: #8a97ad; --ink: #0f1f3a;\n    box-sizing: border-box;\n    padding-top: env(safe-area-inset-top, 0px);\n    padding-bottom: env(safe-area-inset-bottom, 0px);\n  }\n  .__x { scroll-padding-top: env(safe-area-inset-top, 0px); }\n  :host { height: 100%; margin: 0; }\n  :host { background: #020b18; overflow: hidden; font-family: \"Noto Sans TC\", \"PingFang TC\", \"Microsoft JhengHei\", sans-serif; }\n  #viewport { position: fixed; inset: 0; cursor: pointer; }\n  #stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; background: var(--navy); overflow: hidden; transform-origin: center center; }\n  .circle { position: absolute; border-radius: 50%; background: var(--navy-2); }\n  #c1 { width: 760px; height: 760px; left: 1520px; top: -320px; }\n  #c2 { width: 840px; height: 840px; left: -325px; top: 760px; }\n  .abs { position: absolute; white-space: nowrap; }\n  #eyebrow { left: 100px; top: 64px; font-size: 26px; color: var(--coral); }\n  #title { left: 100px; top: 108px; font-size: 64px; font-weight: 500; color: var(--white); line-height: 80px; }\n  #sub { left: 102px; top: 178px; font-size: 26px; color: var(--muted); }\n  #footer { left: 100px; top: 1028px; font-size: 20px; color: #5b6a82; }\n  #logo { position: absolute; left: 1540px; top: 70px; width: 301px; height: 87px; border-radius: 20px; background: var(--white); overflow: hidden; }\n  #logo svg { display: block; width: 100%; height: 100%; }\n\n  .card { position: absolute; top: 320px; width: 501px; height: 416px; border-radius: 52px; background: var(--white); opacity: .3;\n    transition: opacity .6s ease, box-shadow .6s ease; }\n  .card.on { opacity: 1; box-shadow: 0 14px 30px rgba(0,0,0,.28); }\n  .card .t { position: absolute; left: 0; width: 100%; top: 196px; text-align: center; font-size: 38px; font-weight: 500; color: #1b2a44; line-height: 50px; white-space: nowrap; }\n  .card .d { position: absolute; left: 0; width: 100%; top: 266px; text-align: center; font-size: 24px; color: #6b7a90; line-height: 34px; white-space: nowrap; }\n\n  #icons { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; pointer-events: none; }\n  .grp { opacity: .3; transition: opacity .6s ease; } .grp.on { opacity: 1; }\n  .mv { transition: transform 1s cubic-bezier(.45,0,.3,1); transform-box: view-box; }\n  .car1 { transform: translateX(var(--s)); }\n  .car1.sep { transform: none; }\n\n  .ppl { transition: transform 1.1s cubic-bezier(.5,0,.3,1), opacity .3s ease .85s; }\n  .ppl.go { opacity: 0; }\n  .lnk { transition: opacity .4s ease; } .lnk.go { opacity: 0; }\n  #car2 { transition: transform .25s ease; }\n  #car3 { transition: transform .6s cubic-bezier(.45,0,.3,1); }\n  .mk { transform-box: fill-box; transform-origin: center; }\n  .mk.pulse { animation: pulse .7s ease-out; }\n  @keyframes pulse { 0% { transform: scale(1); } 40% { transform: scale(1.5); } 100% { transform: scale(1); } }\n\n  #bar { position: absolute; left: 500px; top: 815px; width: 921px; height: 91px; border-radius: 46px; background: var(--yellow); overflow: hidden;\n    display: grid; place-items: center; font-size: 31px; font-weight: 500; color: #14233f; opacity: .28; transition: opacity .8s ease; }\n  #bar.on { opacity: 1; }\n  #bar::after { content: \"\"; position: absolute; top: 0; bottom: 0; left: -240px; width: 200px; background: linear-gradient(100deg, transparent, rgba(255,255,255,.6), transparent); }\n  #bar.on::after { animation: sweep 1.4s ease-in-out .2s forwards; }\n  @keyframes sweep { to { left: 1000px; } }\n\n  #stage.noanim, #stage.noanim * { transition: none !important; animation: none !important; }\n",html:"\n<div id=\"viewport\">\n  <div id=\"stage\">\n    <div class=\"circle\" id=\"c1\"><\/div><div class=\"circle\" id=\"c2\"><\/div>\n    <div class=\"abs\" id=\"eyebrow\">MOBILITY<\/div>\n    <div class=\"abs\" id=\"title\">成局後，直接銜接 Yoxi 乘車<\/div>\n    <div class=\"abs\" id=\"sub\">避免聚會約成後改搭其他交通工具<\/div>\n    <div id=\"logo\"><\/div>\n\n    <div class=\"card\" id=\"k1\" style=\"left:115px\"><div class=\"t\">各自叫車<\/div><div class=\"d\">距離較遠，各自出發<\/div><\/div>\n    <div class=\"card\" id=\"k2\" style=\"left:685px\"><div class=\"t\">集合後共乘<\/div><div class=\"d\">先到公平集合點<\/div><\/div>\n    <div class=\"card\" id=\"k3\" style=\"left:1255px\"><div class=\"t\">多點接送<\/div><div class=\"d\">位置與路線相容<\/div><\/div>\n\n    <svg id=\"icons\" viewBox=\"0 0 1920 1080\">\n      <!-- 各自叫車：三台車 -->\n      <g class=\"grp\" id=\"g1\">\n        <g class=\"mv car1\" id=\"ca\" style=\"--s:32px\"><rect x=\"260\" y=\"390\" width=\"59\" height=\"35\" rx=\"12\" fill=\"#ffc92a\"/><circle cx=\"275\" cy=\"425\" r=\"7\" fill=\"#0f1f3a\"/><circle cx=\"303\" cy=\"425\" r=\"7\" fill=\"#0f1f3a\"/><\/g>\n        <g class=\"mv car1\" id=\"cb\" style=\"--s:0px\"><rect x=\"332\" y=\"390\" width=\"59\" height=\"35\" rx=\"12\" fill=\"#ffc92a\"/><circle cx=\"347\" cy=\"425\" r=\"7\" fill=\"#0f1f3a\"/><circle cx=\"375\" cy=\"425\" r=\"7\" fill=\"#0f1f3a\"/><\/g>\n        <g class=\"mv car1\" id=\"cc\" style=\"--s:-32px\"><rect x=\"404\" y=\"390\" width=\"59\" height=\"35\" rx=\"12\" fill=\"#ffc92a\"/><circle cx=\"419\" cy=\"425\" r=\"7\" fill=\"#0f1f3a\"/><circle cx=\"447\" cy=\"425\" r=\"7\" fill=\"#0f1f3a\"/><\/g>\n      <\/g>\n\n      <!-- 集合後共乘：兩人匯入一台車 -->\n      <g class=\"grp\" id=\"g2\">\n        <g class=\"lnk\" id=\"lk\"><line x1=\"863\" y1=\"435\" x2=\"928\" y2=\"453\" stroke=\"#64758b\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"922\" y1=\"435\" x2=\"931\" y2=\"448\" stroke=\"#64758b\" stroke-width=\"4\" stroke-linecap=\"round\"/><\/g>\n        <g id=\"car2\" style=\"transform-box:fill-box;transform-origin:center\"><rect x=\"930\" y=\"435\" width=\"96\" height=\"50\" rx=\"20\" fill=\"#ffc92a\"/><circle cx=\"955\" cy=\"485\" r=\"9\" fill=\"#0f1f3a\"/><circle cx=\"1001\" cy=\"485\" r=\"9\" fill=\"#0f1f3a\"/><\/g>\n        <g class=\"ppl\" id=\"pa\" style=\"transform-box:fill-box;transform-origin:center\"><circle cx=\"863\" cy=\"403\" r=\"18\" fill=\"#ff2d55\"/><\/g>\n        <g class=\"ppl\" id=\"pb\" style=\"transform-box:fill-box;transform-origin:center\"><circle cx=\"923\" cy=\"403\" r=\"18\" fill=\"#ff2d55\"/><\/g>\n      <\/g>\n\n      <!-- 多點接送：車沿三個停靠點移動 -->\n      <g class=\"grp\" id=\"g3\">\n        <polyline points=\"1400,410 1515,456 1616,401\" fill=\"none\" stroke=\"#ff2d55\" stroke-width=\"5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n        <circle class=\"mk\" id=\"mA\" cx=\"1400\" cy=\"410\" r=\"13\" fill=\"#ff2d55\"/>\n        <circle class=\"mk\" id=\"mB\" cx=\"1616\" cy=\"401\" r=\"13\" fill=\"#ff2d55\"/>\n        <g id=\"car3\"><rect x=\"1480\" y=\"430\" width=\"71\" height=\"40\" rx=\"14\" fill=\"#ffc92a\"/><circle cx=\"1498\" cy=\"470\" r=\"7\" fill=\"#0f1f3a\"/><circle cx=\"1533\" cy=\"470\" r=\"7\" fill=\"#0f1f3a\"/><\/g>\n      <\/g>\n    <\/svg>\n\n    <div id=\"bar\">選擇搭 Yoxi，可享優惠作為獎勵<\/div>\n    <div class=\"abs\" id=\"footer\">12&nbsp; Yoxi 今晚揪一下<\/div>\n  <\/div>\n<\/div>\n\n",init:function(root){
+
+  const $ = id => root.getElementById(id);
+  const stage = $('stage');
+  $('logo').innerHTML = '<svg viewBox="0 0 496 142" xmlns="http://www.w3.org/2000/svg"><path d="M70 22H163C160 72 135 110 80 121C83 90 77 55 70 22Z" fill="#e60026"/><text x="180" y="105" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-style="italic" font-size="118" fill="#e60026" textLength="250" lengthAdjust="spacingAndGlyphs">yoxi</text></svg>';
+
+  let timers = [];
+  const at = (ms, fn) => timers.push(setTimeout(fn, ms));
+  const tf = (id, v) => $(id).style.transform = v;
+  const pulse = id => { const m = $(id); m.classList.remove('pulse'); void m.getBoundingClientRect(); m.classList.add('pulse'); };
+
+  function fit() {
+    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = `translate(-50%, -50%) scale(${s})`;
+  }
+  addEventListener('resize', fit); fit();
+
+  function reset() {
+    stage.classList.add('noanim');
+    ['k1', 'k2', 'k3', 'bar'].forEach(i => $(i).classList.remove('on'));
+    ['g1', 'g2', 'g3'].forEach(i => $(i).classList.remove('on'));
+    ['pa', 'pb', 'lk'].forEach(i => { $(i).classList.remove('go'); $(i).style.transform = ''; });
+    ['ca', 'cb', 'cc'].forEach(i => { $(i).classList.remove('sep'); });
+    tf('car2', ''); tf('car3', '');
+    ['mA', 'mB'].forEach(i => $(i).classList.remove('pulse'));
+    void stage.offsetWidth;
+    stage.classList.remove('noanim');
+  }
+
+  function play() {
+    timers.forEach(clearTimeout); timers = [];
+    reset();
+    // 由左到右：各自叫車（三台車輕輕分開）→ 集合後共乘（兩人匯入一台車）→ 多點接送（車沿三個停靠點行進）→ 點亮黃色獎勵條
+    at(800,  () => { $('k1').classList.add('on'); $('g1').classList.add('on'); });
+    at(1200, () => ['ca', 'cb', 'cc'].forEach(i => $(i).classList.add('sep')));
+
+    at(3400, () => { $('k2').classList.add('on'); $('g2').classList.add('on'); });
+    at(3900, () => {
+      $('lk').classList.add('go');
+      tf('pa', 'translate(115px, 57px) scale(.35)'); tf('pb', 'translate(55px, 57px) scale(.35)');
+      $('pa').classList.add('go'); $('pb').classList.add('go');
+    });
+    at(5000, () => tf('car2', 'scale(1.06)'));
+    at(5250, () => tf('car2', 'scale(1)'));
+
+    // 車從中段起點出發：→ 起點 A → 中間點 → 終點 B → 回到中間
+    at(6800, () => { $('k3').classList.add('on'); $('g3').classList.add('on'); });
+    at(7400, () => tf('car3', 'translate(-115px,-40px)'));
+    at(8100, () => pulse('mA'));
+    at(8400, () => tf('car3', 'translate(0,0)'));
+    at(9100, () => tf('car3', 'translate(101px,-49px)'));
+    at(9800, () => pulse('mB'));
+    at(10100, () => tf('car3', 'translate(0,0)'));
+
+    at(11200, () => $('bar').classList.add('on'));
+
+  }
+
+
+
+
+return {play:play,stop:function(){timers.forEach(clearTimeout);timers=[];if(typeof raf!=='undefined'){raf.forEach(cancelAnimationFrame);raf=[];}}};
+}},
+{name:"13 AI 架構",css:"\n  :host {\n    --navy: #061833; --navy-2: #0d2444; --white: #fff; --coral: #ff2d55; --yellow: #ffcb2b; --muted: #8a97ad;\n    box-sizing: border-box;\n    padding-top: env(safe-area-inset-top, 0px);\n    padding-bottom: env(safe-area-inset-bottom, 0px);\n  }\n  .__x { scroll-padding-top: env(safe-area-inset-top, 0px); }\n  :host { height: 100%; margin: 0; }\n  :host { background: #020b18; overflow: hidden; font-family: \"Noto Sans TC\", \"PingFang TC\", \"Microsoft JhengHei\", sans-serif; }\n  #viewport { position: fixed; inset: 0; cursor: pointer; }\n  #stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; background: var(--navy); overflow: hidden; transform-origin: center center; }\n  .circle { position: absolute; border-radius: 50%; background: var(--navy-2); }\n  #c1 { width: 760px; height: 760px; left: 1520px; top: -320px; }\n  #c2 { width: 840px; height: 840px; left: -325px; top: 760px; }\n  .abs { position: absolute; white-space: nowrap; }\n  #eyebrow { left: 100px; top: 64px; font-size: 26px; color: var(--coral); }\n  #title { left: 100px; top: 108px; font-size: 64px; font-weight: 500; color: var(--white); line-height: 80px; }\n  #sub { left: 102px; top: 178px; font-size: 26px; color: var(--muted); }\n  #footer { left: 100px; top: 1028px; font-size: 20px; color: #5b6a82; }\n  #logo { position: absolute; left: 1540px; top: 70px; width: 301px; height: 87px; border-radius: 20px; background: var(--white); display: grid; place-items: center; }\n  #logo span { font-weight: 700; font-style: italic; font-size: 64px; color: var(--coral); letter-spacing: -2px; font-family: \"Noto Sans TC\", Arial, sans-serif; }\n\n  /* five layers */\n  .card { position: absolute; left: 250px; width: 1000px; height: 93px; border-radius: 30px; background: var(--white); overflow: hidden;\n    opacity: .3; transition: opacity .6s ease, box-shadow .6s ease; }\n  .card.on { opacity: 1; box-shadow: 0 12px 28px rgba(0,0,0,.28); }\n  .card .bar { position: absolute; left: 0; top: 0; width: 26px; height: 100%; background: var(--coral); }\n  .card.last .bar { background: var(--yellow); }\n  .card .name { position: absolute; left: 76px; top: 0; height: 93px; display: flex; align-items: center; font-size: 28px; font-weight: 700; color: #1b2a44; white-space: nowrap; }\n  .card .tech { position: absolute; right: 65px; top: 0; height: 93px; display: flex; align-items: center; padding-top: 22px; box-sizing: border-box; font-size: 22px; color: #6b7a90; white-space: nowrap; }\n  .tech span { position: relative; z-index: 1; transition: color .5s ease; }\n\n  .arrow { position: absolute; left: 738px; width: 26px; height: 26px; color: var(--coral); opacity: .2; transition: opacity .5s ease; }\n  .arrow.y { color: var(--yellow); }\n  .arrow.on { opacity: 1; }\n\n  #note { left: 0; width: 1500px; top: 915px; text-align: center; font-size: 21px; color: #9aa7bc; opacity: .35; transition: opacity .6s ease; }\n  #note span { position: relative; display: inline-block; padding: 0; }\n  #note.on { opacity: 1; color: var(--white); }\n  #note b { position: relative; font-weight: 400; }\n\n  /* LLM block (separate, no connectors) */\n  #llm { position: absolute; left: 1320px; top: 265px; width: 451px; height: 605px; box-sizing: border-box; border: 3px solid var(--coral); border-radius: 50px; background: #153768; }\n  #llm.glow { animation: glow 2.2s ease-out forwards; }\n  @keyframes glow { 0% { box-shadow: 0 0 0 rgba(255,45,85,0); } 45% { box-shadow: 0 0 64px rgba(255,45,85,.5); } 100% { box-shadow: 0 0 32px rgba(255,45,85,.26); } }\n  #llm .t { position: absolute; left: 0; width: 100%; text-align: center; white-space: nowrap; }\n  #llm .h { top: 56px; font-size: 56px; color: var(--coral); line-height: 74px; }\n  #llm .b { font-size: 28px; font-weight: 700; color: var(--white); line-height: 40px; }\n  #llm .s { font-size: 22px; color: #8d9db6; line-height: 40px; }\n  #llm hr { position: absolute; left: 87px; width: 271px; top: 433px; margin: 0; border: 0; border-top: 2px solid #4d6486; }\n\n  .p { position: absolute; width: 16px; height: 16px; border-radius: 50%; background: var(--coral); z-index: 5; pointer-events: none; opacity: 0; }\n\n  #stage.noanim, #stage.noanim * { transition: none !important; animation: none !important; }\n",html:"\n<div id=\"viewport\">\n  <div id=\"stage\">\n    <div class=\"circle\" id=\"c1\"><\/div><div class=\"circle\" id=\"c2\"><\/div>\n    <div class=\"abs\" id=\"eyebrow\">TECHNOLOGY<\/div>\n    <div class=\"abs\" id=\"title\">AI 技術說明<\/div>\n    <div class=\"abs\" id=\"sub\">可稽核的模型負責計算，生成式 AI 負責理解與說明<\/div>\n    <div id=\"logo\"><span>yoxi<\/span><\/div>\n\n    <div class=\"card\" style=\"top:265px\"><div class=\"bar\"><\/div><div class=\"name\">行為資料<\/div><div class=\"tech\"><span>SQL／dbt<\/span><\/div><\/div>\n    <div class=\"card\" style=\"top:393px\"><div class=\"bar\"><\/div><div class=\"name\">觸發模型<\/div><div class=\"tech\"><span>LightGBM<\/span><\/div><\/div>\n    <div class=\"card\" style=\"top:521px\"><div class=\"bar\"><\/div><div class=\"name\">地點搜尋與推薦<\/div><div class=\"tech\"><span>Google Places API (New) - Nearby Search<\/span><\/div><\/div>\n    <div class=\"card\" style=\"top:649px\"><div class=\"bar\"><\/div><div class=\"name\">群組最佳化<\/div><div class=\"tech\"><span>限制式最佳化<\/span><\/div><\/div>\n    <div class=\"card last\" style=\"top:777px\"><div class=\"bar\"><\/div><div class=\"name\">路線與叫車服務<\/div><div class=\"tech\"><span>Google Maps Routes／OR-Tools<\/span><\/div><\/div>\n\n    <div class=\"arrow\" style=\"top:363px\"><\/div>\n    <div class=\"arrow\" style=\"top:491px\"><\/div>\n    <div class=\"arrow\" style=\"top:619px\"><\/div>\n    <div class=\"arrow y\" style=\"top:747px\"><\/div>\n\n    <div class=\"abs\" id=\"note\"><span><b>Places API 以欄位遮罩與快取取得區域內高評價、多評論店家，確保推薦資料真實<\/b><\/span><\/div>\n\n    <div id=\"llm\">\n      <div class=\"t h\">LLM<\/div>\n      <div class=\"t b\" style=\"top:196px\">理解使用者需求<\/div>\n      <div class=\"t b\" style=\"top:271px\">產生可讀說明<\/div>\n      <div class=\"t b\" style=\"top:346px\">輸出結構化摘要<\/div>\n      <hr>\n      <div class=\"t s\" style=\"top:485px\">不負責價格、路線<\/div>\n      <div class=\"t s\" style=\"top:530px\">及優惠資格計算<\/div>\n    <\/div>\n    <div class=\"abs\" id=\"footer\">13&nbsp; Yoxi 今晚揪一下<\/div>\n  <\/div>\n<\/div>\n\n",init:function(root){
+
+  const stage = root.getElementById('stage');
+  const cards = [...root.querySelectorAll('.card')];
+  const arrows = [...root.querySelectorAll('.arrow')];
+  const note = root.getElementById('note');
+  const llm = root.getElementById('llm');
+  const TOP = [265, 393, 521, 649, 777];
+  const ARROW_SVG = '<svg width="26" height="26" viewBox="0 0 26 26" fill="currentColor"><rect x="9" y="0" width="8" height="9"/><polygon points="0,8 26,8 13,26"/></svg>';
+  arrows.forEach(a => a.innerHTML = ARROW_SVG);
+
+  let timers = [];
+  const at = (ms, fn) => timers.push(setTimeout(fn, ms));
+
+  function fit() {
+    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = `translate(-50%, -50%) scale(${s})`;
+  }
+  addEventListener('resize', fit); fit();
+
+  // 資料粒子：從上一層沿中線流向下一層；進入最後一層時由珊瑚紅轉為計程車黃
+  function particles(k) {
+    const y0 = TOP[k - 1] + 62, y1 = TOP[k] + 34, last = k === 4;
+    [-12, 0, 12].forEach((dx, i) => {
+      const p = document.createElement('div');
+      p.className = 'p'; p.style.left = (751 + dx - 8) + 'px';
+      stage.appendChild(p);
+      const c1 = '#ff2d55', c2 = last ? '#ffcb2b' : '#ff2d55';
+      const a = p.animate([
+        { top: y0 + 'px', opacity: 0, backgroundColor: c1, offset: 0 },
+        { top: (y0 + (y1 - y0) * .15) + 'px', opacity: 1, backgroundColor: c1, offset: .15 },
+        { top: (y0 + (y1 - y0) * .7) + 'px', opacity: 1, backgroundColor: c1, offset: .7 },
+        { top: (y1 - 8) + 'px', opacity: 1, backgroundColor: c2, offset: .9 },
+        { top: y1 + 'px', opacity: 0, backgroundColor: c2, offset: 1 }
+      ], { duration: 800, delay: i * 130, easing: 'ease-in-out' });
+      a.onfinish = () => p.remove();
+    });
+  }
+
+  function reset() {
+    stage.classList.add('noanim');
+    cards.forEach(c => c.classList.remove('on', 'hl'));
+    arrows.forEach(a => a.classList.remove('on'));
+    note.classList.remove('on');
+    llm.classList.remove('glow');
+    root.querySelectorAll('.p').forEach(p => p.remove());
+    void stage.offsetWidth;
+    stage.classList.remove('noanim');
+  }
+
+  function play() {
+    timers.forEach(clearTimeout); timers = [];
+    reset();
+    // 五層依序啟動；地點搜尋與推薦停留較久並標示重點；五層完成後 LLM 輕微發光一次；結尾停留後循環
+    at(1000, () => cards[0].classList.add('on'));
+    [[1, 1500, 2300], [2, 2800, 3600], [3, 4600, 5400], [4, 5900, 6700]].forEach(([k, spawn, act]) => {
+      at(spawn, () => { arrows[k - 1].classList.add('on'); });
+      at(act, () => cards[k].classList.add('on'));
+    });
+    at(3700, () => { cards[2].classList.add('hl'); note.classList.add('on'); });
+    at(7500, () => llm.classList.add('glow'));
+
+  }
+
+
+
+
+return {play:play,stop:function(){timers.forEach(clearTimeout);timers=[];if(typeof raf!=='undefined'){raf.forEach(cancelAnimationFrame);raf=[];}}};
+}},
+{name:"14/15 成長循環與結尾",css:"\n  :host {\n    --navy: #061833; --navy-2: #0d2444; --white: #fff; --coral: #ff2d55; --yellow: #ffcb2b; --muted: #8a97ad; --track: #3a4b69;\n    box-sizing: border-box;\n    padding-top: env(safe-area-inset-top, 0px);\n    padding-bottom: env(safe-area-inset-bottom, 0px);\n  }\n  .__x { scroll-padding-top: env(safe-area-inset-top, 0px); }\n  :host { height: 100%; margin: 0; }\n  :host { background: #020b18; overflow: hidden; font-family: \"Noto Sans TC\", \"PingFang TC\", \"Microsoft JhengHei\", sans-serif; }\n  #viewport { position: fixed; inset: 0; cursor: pointer; }\n  #stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; background: var(--navy); overflow: hidden; transform-origin: center center; }\n  .circle { position: absolute; border-radius: 50%; background: var(--navy-2); }\n  #c1 { width: 760px; height: 760px; left: 1520px; top: -320px; }\n  #c2 { width: 840px; height: 840px; left: -325px; top: 760px; }\n  .scene { position: absolute; inset: 0; transition: opacity .9s ease; }\n  #s2 { opacity: 0; }\n  #stage.end #s1 { opacity: 0; }\n  #stage.end #s2 { opacity: 1; }\n  .abs { position: absolute; white-space: nowrap; }\n  .ctr { left: 0; width: 1920px; text-align: center; }\n\n  #eyebrow { left: 100px; top: 64px; font-size: 26px; color: var(--coral); }\n  #title { left: 100px; top: 108px; font-size: 64px; font-weight: 500; color: var(--white); line-height: 80px; }\n  #sub { left: 102px; top: 178px; font-size: 26px; color: var(--muted); }\n  .foot { left: 100px; top: 1028px; font-size: 20px; color: #5b6a82; }\n  #logo { position: absolute; left: 1540px; top: 70px; width: 301px; height: 87px; border-radius: 20px; background: var(--white); overflow: hidden; }\n  .logo svg { display: block; width: 100%; height: 100%; }\n\n  /* steps */\n  .step { position: absolute; top: 450px; width: 271px; height: 141px; opacity: .25; transform: scale(.95);\n    transition: opacity .5s ease, transform .6s cubic-bezier(.34,1.56,.64,1); }\n  .step.on { opacity: 1; transform: none; }\n  .box { position: absolute; inset: 0; border-radius: 34px; display: grid; place-items: center; font-size: 28px; font-weight: 500; color: var(--white); background: var(--coral); box-sizing: border-box; }\n  .num { position: absolute; left: 87px; top: -115px; width: 97px; height: 97px; border-radius: 50%; display: grid; place-items: center; font-size: 25px; color: var(--white); background: var(--coral); }\n  .step.y .box { background: var(--yellow); color: #1b2a44; } .step.y .num { background: var(--yellow); color: #1b2a44; }\n  .step.w .box { background: #16376a; border: 3px solid var(--white); } .step.w .num { background: var(--white); color: #1b2a44; }\n\n  .arrow { position: absolute; top: 507px; width: 66px; height: 26px; }\n  .arrow > svg { position: absolute; left: 0; top: 0; }\n  .arrow .base { color: var(--track); opacity: .5; }\n  .arrow .fill { position: absolute; left: 0; top: 0; width: 0; height: 26px; overflow: hidden; color: var(--coral); transition: width .7s cubic-bezier(.45,0,.3,1), color .45s ease; }\n  .arrow .fill.on { width: 66px; } .arrow .fill.yellow { color: var(--yellow); }\n\n  #loop { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; pointer-events: none; }\n  #loopPath { stroke-dasharray: 1678; stroke-dashoffset: 1678; transition: stroke-dashoffset 3s cubic-bezier(.4,0,.3,1); }\n  #loopPath.on { stroke-dashoffset: 0; }\n  #loopHead { opacity: 0; transition: opacity .4s ease; } #loopHead.on { opacity: 1; }\n  #cap { top: 790px; font-size: 24px; color: #8a97ad; opacity: 0; transition: opacity .8s ease; } #cap.on { opacity: 1; }\n  #goal { top: 912px; display: flex; justify-content: center; align-items: center; gap: 44px; font-size: 28px; font-weight: 500; color: var(--white); }\n  #goal i { width: 3px; height: 24px; background: var(--white); display: block; }\n\n  /* end card: slow push toward logo */\n  #push { position: absolute; inset: 0; transform-origin: 983px 261px; transform: scale(1); transition: transform 6s cubic-bezier(.35,0,.25,1); }\n  #stage.push #push { transform: scale(1.14); }\n  #endLogo { position: absolute; left: 735px; top: 190px; width: 496px; height: 142px; border-radius: 28px; background: var(--white); overflow: hidden; }\n  #e1 { top: 416px; font-size: 72px; color: var(--white); line-height: 90px; }\n  #e2 { top: 560px; font-size: 36px; color: #8794ab; line-height: 50px; }\n  #e3 { top: 614px; font-size: 54px; color: var(--coral); font-weight: 500; line-height: 66px; }\n  #e4 { top: 742px; font-size: 31px; color: var(--white); line-height: 46px; }\n  #e5 { top: 792px; font-size: 31px; color: var(--yellow); font-weight: 500; line-height: 46px; }\n  #e6 { top: 944px; font-size: 26px; color: #56657f; line-height: 36px; }\n\n  #stage.noanim, #stage.noanim * { transition: none !important; }\n",html:"\n<div id=\"viewport\">\n  <div id=\"stage\">\n    <div class=\"circle\" id=\"c1\"><\/div><div class=\"circle\" id=\"c2\"><\/div>\n\n    <div class=\"scene\" id=\"s1\">\n      <div class=\"abs\" id=\"eyebrow\">GROWTH LOOP<\/div>\n      <div class=\"abs\" id=\"title\">先證明不叫車也會打開<\/div>\n      <div class=\"abs\" id=\"sub\">每一步都有可驗證的轉換指標<\/div>\n      <div id=\"logo\" class=\"logo\"><\/div>\n\n      <div id=\"steps\"><\/div>\n\n      <svg id=\"loop\" viewBox=\"0 0 1920 1080\">\n        <path id=\"loopPath\" d=\"M1690 650 V760 H230 V652\" fill=\"none\" stroke=\"#fff\" stroke-width=\"4\"/>\n        <polygon id=\"loopHead\" points=\"216,652 230,625 244,652\" fill=\"#fff\"/>\n      <\/svg>\n      <div class=\"abs ctr\" id=\"cap\">回饋下一次觸發時機與提案內容<\/div>\n      <div class=\"abs ctr\" id=\"goal\"><span>主要目標：提升非叫車開啟與回訪<\/span><i><\/i><span>商業價值：創造新增乘車訂單<\/span><\/div>\n      <div class=\"abs foot\">14&nbsp; Yoxi 今晚揪一下<\/div>\n    <\/div>\n\n    <div class=\"scene\" id=\"s2\">\n      <div id=\"push\">\n        <div id=\"endLogo\" class=\"logo\"><\/div>\n        <div class=\"abs ctr\" id=\"e1\">Yoxi 今晚揪一下<\/div>\n        <div class=\"abs ctr\" id=\"e2\">在使用者還沒決定出門前，<\/div>\n        <div class=\"abs ctr\" id=\"e3\">就先打開 Yoxi。<\/div>\n        <div class=\"abs ctr\" id=\"e4\">讓每一次被喬成的聚會，<\/div>\n        <div class=\"abs ctr\" id=\"e5\">都有機會成為一趟新增移動。<\/div>\n        <div class=\"abs ctr\" id=\"e6\">自由聯盟｜待機俱樂部<\/div>\n      <\/div>\n      <div class=\"abs foot\">15&nbsp; 3 分鐘方案說明影片<\/div>\n    <\/div>\n  <\/div>\n<\/div>\n\n",init:function(root){
+
+  const $ = id => root.getElementById(id);
+  const stage = $('stage');
+  const LOGO = '<svg viewBox="0 0 496 142" xmlns="http://www.w3.org/2000/svg"><path d="M70 22H163C160 72 135 110 80 121C83 90 77 55 70 22Z" fill="#e60026"/><text x="180" y="105" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-style="italic" font-size="118" fill="#e60026" textLength="250" lengthAdjust="spacingAndGlyphs">yoxi</text></svg>';
+  root.querySelectorAll('.logo').forEach(l => l.innerHTML = LOGO);
+
+  const LABELS = ['非叫車開啟', '好友加入', 'AI 成局', 'Yoxi 乘車', '數據回饋'];
+  const LEFT = [95, 460, 825, 1190, 1555];
+  const CLS = ['', '', '', 'y', 'w'];
+  const ARROW = '<svg width="66" height="26" viewBox="0 0 66 26" fill="currentColor"><rect x="0" y="10.5" width="46" height="5"/><polygon points="44,0 66,13 44,26"/></svg>';
+  let h = '';
+  LABELS.forEach((t, i) => {
+    h += `<div class="step ${CLS[i]}" id="st${i}" style="left:${LEFT[i]}px"><div class="num">${i + 1}</div><div class="box">${t}</div></div>`;
+    if (i < 4) h += `<div class="arrow" style="left:${LEFT[i] + 285}px"><div class="base">${ARROW}</div><div class="fill" id="ar${i}">${ARROW}</div></div>`;
+  });
+  $('steps').innerHTML = h;
+
+  let timers = [];
+  const at = (ms, fn) => timers.push(setTimeout(fn, ms));
+  const on = (id, c = 'on') => $(id).classList.add(c);
+
+  function fit() {
+    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = `translate(-50%, -50%) scale(${s})`;
+  }
+  addEventListener('resize', fit); fit();
+
+  function reset() {
+    stage.classList.add('noanim');
+    stage.classList.remove('end', 'push');
+    for (let i = 0; i < 5; i++) $('st' + i).classList.remove('on');
+    for (let i = 0; i < 4; i++) $('ar' + i).className = 'fill';
+    ['loopPath', 'loopHead', 'cap'].forEach(id => $(id).classList.remove('on'));
+    void stage.offsetWidth;
+    stage.classList.remove('noanim');
+  }
+
+  function play() {
+    timers.forEach(clearTimeout); timers = [];
+    reset();
+    // 1→5 依序啟動，脈衝沿箭頭前進，到步驟 4 才轉為計程車黃 → 白色回饋線回到步驟 1 → 轉場結尾卡 → 緩推 Logo 並停留 3 秒
+    at(600,  () => on('st0'));
+    at(1400, () => on('ar0', 'on'));
+    at(2100, () => on('st1'));
+    at(2800, () => on('ar1', 'on'));
+    at(3500, () => on('st2'));
+    at(4200, () => on('ar2', 'on'));
+    at(4900, () => { on('ar2', 'yellow'); on('st3'); });
+    at(5700, () => on('ar3', 'on'));
+    at(6400, () => on('st4'));
+    at(7000, () => { on('loopPath'); on('cap'); });
+    at(10000, () => on('loopHead'));
+    at(11200, () => stage.classList.add('end'));
+    at(11600, () => stage.classList.add('push'));   // 推進 6 秒 → 17.6 秒
+
+  }
+
+
+
+
+return {play:play,stop:function(){timers.forEach(clearTimeout);timers=[];if(typeof raf!=='undefined'){raf.forEach(cancelAnimationFrame);raf=[];}}};
+}}
+];
+var hosts = [], apis = [], cur = -1, tm = null;
+scenes.forEach(function (s, i) {
+  var h = document.createElement('div'); h.className = 'host';
+  var sh = h.attachShadow({ mode: 'open' });
+  sh.innerHTML = '<style>' + s.css + '</style>' + s.html;
+  document.body.appendChild(h);
+  hosts.push(h); apis.push(s.init(sh));
+});
+function go(i) {
+  clearTimeout(tm);
+  var prev = cur; cur = i;
+  hosts.forEach(function (h, k) { if (k !== i) h.classList.remove('on'); });
+  apis.forEach(function (a, k) { if (k !== i) setTimeout(function () { if (cur !== k) a.stop(); }, 1000); });
+  apis[i].stop();
+  hosts[i].classList.add('on');
+  apis[i].play();
+  tm = setTimeout(function () { go((i + 1) % scenes.length); }, DUR[i]);
+}
+addEventListener('click', function () { go(0); });
+addEventListener('keydown', function (e) {
+  if (e.key === 'r' || e.key === 'R' || e.key === ' ') go(0);
+  if (e.key === 'ArrowRight') go((cur + 1) % scenes.length);
+  if (e.key === 'ArrowLeft') go((cur - 1 + scenes.length) % scenes.length);
+  var n = parseInt(e.key, 10); if (n >= 1 && n <= scenes.length) go(n - 1);
+});
+(document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () { go(0); });
+</script>
+</body>
+</html>
